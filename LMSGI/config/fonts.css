@@ -1,0 +1,11 @@
+/* Fuentes corporativas desde la carpeta resources */
+/* @font-face carga una fuente desde un archivo local*/
+/*format especifica el tipo de archivo (ttf)*/
+@font-face {
+    font-family: 'Asenine';
+    src: url('../resources/fonts/ASENINE.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Ar Chistry';
+    src: url('../resources/fonts/ARCHRISTY.ttf') format('truetype');
+}

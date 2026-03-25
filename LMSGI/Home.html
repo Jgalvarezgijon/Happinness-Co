@@ -2,58 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Happiness & Co - Eventos</title>
+    <title>Happiness & Co - Home</title>
     <!-- TailwindCSS importado directamente al archivo HTML -->
+    <!--Incluyo la configuración, fuentes y estilos del proyecto en otros archivos-->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Colores guardados para su uso a lo largo del proyecto -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        corporativo: '#ba007c',
-                        musica:      '#ba007c',
-                        cine:        '#009bdb',
-                        teatro:      '#009bdb',
-                        exposiciones:'#ff7b00',
-                        otros:       '#555555',
-                    },
-                    fontFamily: {
-                        asenine:   ['Asenine', 'sans-serif'],
-                        archistry: ['"Ar Chistry"', 'sans-serif'],
-                    },
-                    /* Efecto visual para el símbolo & del logotipo.
-                    El caracter alterna su opacidad entre los 4 colores corporativos propuestos
-                    Cada 8 segundos, el símbolo & hace una rotación de color completa*/
-                    keyframes: {
-                        ampColor: {
-                            '0%':   { color: '#009bdb' },  /*cine / teatro*/
-                            '25%':  { color: '#ba007c' },  /*corporativo | música*/
-                            '50%':  { color: '#555555' },  /*otros*/
-                            '75%':  { color: '#ff7b00' },  /*exposiciones*/
-                            '100%': { color: '#009bdb' },  /*vuelve al inicio*/
-                        }
-                    },
-                    animation: {
-                        'animacionLogo': 'ampColor 8s ease-in-out infinite',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Fuentes corporativas desde la carpeta resources */
-        /* @font-face carga una fuente desde un archivo local*/
-        /*format especifica el tipo de archivo (ttf)*/
-        @font-face {
-            font-family: 'Asenine';
-            src: url('./resources/fonts/ASENINE.ttf') format('truetype');
-        }
-        @font-face {
-            font-family: 'Ar Chistry';
-            src: url('./resources/ARCHRISTY.ttf') format('truetype');
-        }
-    </style>
+    <script src="config/tailwind-config.js"></script>
+    <link rel="stylesheet" href="config/fonts.css">
 </head>
 <!--=====Cuerpo de la página=====-->
 <!-- Color gradiente de fondo, inspirado en los colores corporativos proporcionados-->
@@ -61,28 +15,15 @@
 <!--El cuerpo es flexible y ocupa toda la pantalla-->
 <body class="bg-gradient-to-r from-pink-50 to-blue-50 flex flex-col min-h-screen">
 
-    <!--=====Header=====-->
-    <header class="bg-white border-b-8 border-corporativo">
-        <div class="max-w-5xl mx-auto px-2 py-4 flex items-center">
-            <!--Logo-->
-            <a href="#" class="flex items-center text-4xl font-bold text-gray-800 no-underline">
-                <span class="font-asenine">HAPPINESS</span>
-                <!--Símbolo animado con la clase animacionLogo (&#38 es el código HTML para el símbolo &)-->
-                <span class="font-archistry text-5xl mx-1 animate-animacionLogo">&#38;</span>
-                <span class="font-asenine">CO</span>
-            </a>
-            <!-- Menú principal con nav-->
-            <!--Objetos en flex centrados. Fuente en negro y con hover en corporativo y subrayado con hover b2-->
-            <nav class="flex gap-6 text-[22px] font-medium ml-auto">
-                <a href="#" class="text-corporativo font-bold border-b-2 border-corporativo pb-1">Inicio</a>
-                <a href="ProximosEventos.html" class="hover:text-corporativo hover:border-b-2 hover:border-corporativo pb-1">Eventos</a>
-                <a href="HistorialDeEventos.html" class="hover:text-corporativo hover:border-b-2 hover:border-corporativo pb-1">Historial de Eventos</a>
-                <a href="SobreNosotros.html" class="hover:text-corporativo hover:border-b-2 hover:border-corporativo pb-1">Sobre Nosotros</a>
-                <a href="Fuentes.html" class="hover:text-corporativo hover:border-b-2 hover:border-corporativo pb-1">Fuentes</a>
-                <a href="Contacto.html" class="hover:text-corporativo hover:border-b-2 hover:border-corporativo pb-1">Contacto</a>
-            </nav>
-        </div>
-    </header>
+    <!--Header importado con JavaScript-->
+    <div id="header"></div>
+    <script>
+        fetch("components/header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header").innerHTML = data;
+            });
+    </script>
 
     <!--=====Evento Principal=====-->
     <section class="relative w-full h-96">
@@ -96,7 +37,7 @@
         <div class="absolute inset-0 flex flex-col justify-end p-10 text-white max-w-5xl mx-auto">
             <span class="bg-musica text-white text-xs font-bold px-3 py-1 rounded w-max mb-3 uppercase">Música</span>
             <h1 class="text-5xl font-bold mb-2">Madreñes Fest 2026</h1>
-            <h2 class="text-lg pb-2">El mayor festival de música tradicional asturiana llega a Gijón</p>
+            <h2 class="text-lg pb-2">El mayor festival de música celta llega a Gijón. ¿Te lo vas a perder?</p>
             <p class="text-sm pt-2">1 - 5 de Agosto | Jardines de la Universidad Laboral de Gijón</p>
         </div>
     </section>
@@ -215,52 +156,22 @@
         </aside>
 
     </main>
-
-    <!--===== FOOTER =====-->
-    <footer class="bg-gray-800 text-gray-300 border-t-8 border-corporativo py-10">
-        <div class="max-w-5xl mx-auto px-6 flex flex-col gap-2">
-            
-            <!--Logo y RRSS-->
-            <div class="flex flex-col sm:flex-row justify-between items-center">
-                <!--Logo-->
-                <a href="#" class="flex items-center text-3xl font-bold text-white no-underline mb-4 sm:mb-0">
-                    <span class="font-asenine">HAPPINESS</span>
-                    <span class="font-archistry text-4xl mx-1 animate-animacionLogo">&#38;</span>
-                    <span class="font-asenine">CO</span>
-                </a>
-                
-                <!--Iconos de RRSS generados con vectores SVG por IA-->
+    <script src="components/footer.html"></script>
+    
+    
+    <!--===== FOOTER No exportable (rompe)=====-->
+    <footer class="bg-gray-800 text-gray-300 border-t-8 border-corporativo py-8 w-full mt-auto">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col gap-4">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <a href="#" class="flex items-center text-3xl font-bold text-white no-underline"><span class="font-asenine">HAPPINESS</span><span class="font-archistry text-4xl mx-1 animate-animacionLogo">&#38;</span><span class="font-asenine">CO</span></a>
                 <div class="flex gap-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Facebook">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.324V1.325C24 .597 23.403 0 22.675 0z"/></svg>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.20 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="X (Twitter)">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    </a>
-                    <a href="rss.xml" class="text-gray-400 hover:text-orange-400 transition-colors" aria-label="RSS">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6.5 21a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM22 23.5h-4.5c0-8.5-6.5-15-15-15V4c11 0 19.5 8.5 19.5 19.5zM15.5 23.5H11c0-4.5-4-8.5-8.5-8.5V10.5c7.5 0 13 5.5 13 13z"/></svg>
-                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Facebook"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.324V1.325C24 .597 23.403 0 22.675 0z"/></svg></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Instagram"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.20 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="X (Twitter)"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="rss.xml" class="text-gray-400 hover:text-orange-400 transition-colors" aria-label="RSS"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6.5 21a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM22 23.5h-4.5c0-8.5-6.5-15-15-15V4c11 0 19.5 8.5 19.5 19.5zM15.5 23.5H11c0-4.5-4-8.5-8.5-8.5V10.5c7.5 0 13 5.5 13 13z"/></svg></a>
                 </div>
             </div>
-
-            <hr class="border-gray-700">
-
-            <!-- Footer Links & Copyright -->
-            <div class="flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-4 sm:gap-0">
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#" class="hover:text-white transition-colors">Inicio</a>
-                    <a href="ProximosEventos.html" class="hover:text-white transition-colors">Eventos</a>
-                    <a href="HistorialDeEventos.html" class="hover:text-white transition-colors">Historial</a>
-                    <a href="SobreNosotros.html" class="hover:text-white transition-colors">Sobre Nosotros</a>
-                    <a href="Fuentes.html" class="hover:text-white transition-colors">Fuentes</a>
-                    <a href="Contacto.html" class="hover:text-white transition-colors">Contacto</a>
-                </div>
-                <p>&copy; 2026 Happiness & Co. Todos los derechos reservados.</p>
-            </div>
-            
+            <hr class="border-gray-700 w-full"><div class="flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-4 sm:gap-0"><div class="flex flex-wrap justify-center gap-4"><a href="#" class="hover:text-white transition-colors">Inicio</a><a href="ProximosEventos.html" class="hover:text-white transition-colors">Eventos</a><a href="HistorialDeEventos.html" class="hover:text-white transition-colors">Historial</a><a href="SobreNosotros.html" class="hover:text-white transition-colors">Sobre Nosotros</a><a href="Fuentes.html" class="hover:text-white transition-colors">Fuentes</a><a href="Contacto.html" class="hover:text-white transition-colors">Contacto</a></div><p>&copy; 2026 Happiness & Co. Todos los derechos reservados.</p></div>
         </div>
     </footer>
 </body>
