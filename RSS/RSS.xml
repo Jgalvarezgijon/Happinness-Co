@@ -1,17 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:hc="http://www.happinessco.com/rss">
     <channel>
         <title>Happiness &amp; Co</title>
-        <link>https://happinessco.com</link>
-        <description>Eventos y actividades para mejorar tu bienestar</description>
+        <link>https://www.happinessco.com</link>
+        <description>Sindicación de eventos y actividades en Gijón, Asturias</description>
         <language>es-es</language>
-        <pubDate>Wed, 26 Mar 2026 13:47:11 +0100</pubDate>
-        <lastBuildDate>Wed, 26 Mar 2026 13:47:11 +0100</lastBuildDate>
+        <pubDate>Thursday, 26 Mar 2026 14:35:00 +0100</pubDate>
         <item>
-            <title>Evento 1</title>
-            <link>https://happinessco.com/evento1</link>
-            <description>Descripción del evento 1</description>
-            <pubDate>Wed, 26 Mar 2026 13:47:11 +0100</pubDate>
+            <title>Taller de costura en el Jardín Botánico</title>
+            <link>https://www.happinessco.com/eventos/pasados/Evento_Costura.html</link>
+            <guid>EO001</guid><!--Evento Otros 001 -->
+            <category>Otros</category>
+            <description>
+            Taller de iniciación a la costura en plena naturaleza. Aprende las técnicas básicas mientras disfrutas del entorno privilegiado del Jardín Botánico.
+            Únete a nuestra comunidad de creadores y descubre el placer de fabricar tus propias prendas a mano en el lugar más inspirador de Gijón.
+            </description>
+            <hc:fechaEvento>23/02/2026</hc:fechaEvento>
+            <pubDate>Thursday, 26 Mar 2026 14:35:00 +0100</pubDate>
+        </item>
+        <item>
+            <title>Festival de Cortos de Gijón  </title>
+            <link>https://www.happinessco.com/eventos/pasados/Festival_Cortos.html</link>
+            <guid>EC001</guid><!--Evento Cine 001 -->
+            <category>Cine</category>
+            <description>
+            Finalistas internacionales del concurso de cortos se dan cita en nuestra ciudad para mostrar el talento emergente del séptimo arte.
+            Una jornada intensa de proyecciones, charlas con directores y mucha pasión por el cine para todas las edades.
+            </description>
+            <hc:fechaEvento>18/03/2026</hc:fechaEvento>
+            <pubDate>Thursday, 26 Mar 2026 14:35:00 +0100</pubDate>
+        </item>
+        <item>
+            <title>Diversidad y visibilidad LGTBIQ+</title>
+            <link>https://www.happinessco.com/eventos/pasados/Evento_LGTB.html</link>
+            <guid>EO002</guid>
+            <category>Otros</category>
+            <description>
+            Aprende sobre inclusión, derechos y experiencias de la comunidad LGTBIQ+. Un espacio seguro para preguntas, debate y crecimiento colectivo.
+            Contamos con ponentes de referencia que compartirán sus vivencias y conocimientos para construir una ciudad más diversa, inclusiva y consciente.
+            </description>
+            <hc:fechaEvento>22/04/2026</hc:fechaEvento>
+            <pubDate>Thursday, 26 Mar 2026 14:35:00 +0100</pubDate>
+        </item>
+        <item>
+            <title>Arte contra la Guerra</title>
+            <link>https://www.happinessco.com/eventos/proximos/Evento_Arte.html</link>
+            <guid>EE001</guid><!--Evento Exposicion 001 -->
+            <category>Exposicion</category>
+            <description>La segunda guerra mundial vista desde el pincel de los artistas contemporáneos. Una crítica a la deshumanización del hombre a través del arte.
+            Una exposición cruda, necesaria y profundamente conmovedora que no dejará indiferente a ningún visitante.
+            </description>
+            <hc:fechaEvento>12/05/2026</hc:fechaEvento>
+            <pubDate>Thursday, 26 Mar 2026 14:35:00 +0100</pubDate>
+        </item>
+        <item>
+            <title>Luces de Bohemia</title>
+            <link>https://www.happinessco.com/eventos/proximos/Evento_Teatro.html</link>
+            <guid>ET001</guid>
+            <category>Teatro</category>
+            <description>
+            El grupo de teatro de Cangas de Onís realiza su debut en el Teatro Jovellanos representando la inmortal obra de Ramón María del Valle-Inclán.
+            Un viaje por el esperpento y la noche madrileña a través de los ojos de Max Estrella, un poeta en la miseria.
+            </description>
+            <hc:fechaEvento>19/05/2026</hc:fechaEvento>
+            <pubDate>Thursday, 26 Mar 2026 14:35:00 +0100</pubDate>
+        </item>
+        <item>
+            <title>Requiem de Verdi</title>
+            <link>https://www.happinessco.com/eventos/proximos/Evento_Requiem.html</link>
+            <guid>EM001</guid><!--Evento Musica 001 -->
+            <category>Música</category>
+            <description>
+            La Orquesta Sinfónica del Principado de Asturias (OSPA) presenta una de las obras más relevantes de la música sacra: el Requiem de Verdi.
+            Una oportunidad única para disfrutar de la majestuosidad coral y orquestal en el emblemático Teatro Jovellanos.
+            </description>
+            <hc:fechaEvento>30/05/2026</hc:fechaEvento>
+            <pubDate>Thursday, 26 Mar 2026 14:35:00 +0100</pubDate>
+        </item>
+        <item>
+            <title>Madreñes Fest 2026</title>
+            <link>https://www.happinessco.com/eventos/proximos/Evento_Musica.html</link>
+            <guid>EM002</guid>
+            <category>Música</category>
+            <description>
+            El festival de música independiente más importante de Asturias vuelve con su edición más ambiciosa hasta la fecha.
+            Tres escenarios, más de 20 bandas y una experiencia inolvidable en el corazón de Gijón.
+            </description>
+            <hc:fechaEvento>13/06/2026</hc:fechaEvento>
+            <pubDate>Thursday, 26 Mar 2026 14:35:00 +0100</pubDate>
         </item>
     </channel>
 </rss>
