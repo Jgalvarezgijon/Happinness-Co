@@ -3,8 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <title>Happiness & Co - Contacto</title>
+    <!--Imports-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="config/tailwind-config.js"></script>
+    <link rel="stylesheet" href="config/fonts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body>
-    
+<body class="bg-gradient-to-r from-corporativo/20 to-cine/20 flex flex-col min-h-screen">
+
+    <!--Header-->
+    <div id="header" class="sticky top-0 z-50"></div>
+    <script>
+        fetch("components/header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header").innerHTML = data;
+            });
+    </script>
+
+    <!--Contenido principal-->
+    <main class="max-w-4xl mx-auto py-12 px-6 bg-white my-8 rounded-xl flex-grow">
+        <h1 class="text-3xl font-bold mb-6 border-b-4 border-corporativo pb-2 inline-block">Contacto</h1>
+        <p class="mb-8">
+            Si tienes cualquier duda, rellena este formulario y te responderemos con la mayor brevedad posible.
+        </p>
+
+        <!--Formulario-->
+        <form action="Home.html" method="GET" class="space-y-4">
+                    
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!--Nombre-->
+                <div class="flex flex-col">
+                    <label for="nombre" class="font-bold mb-1">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required
+                        class="p-2 border border-gray-300 rounded">
+                </div>
+
+                <!--Apellidos-->
+                <div class="flex flex-col">
+                    <label for="apellidos" class="font-bold mb-1">Apellidos</label>
+                    <input type="text" id="apellidos" name="apellidos" placeholder="Tus apellidos" required
+                        class="p-2 border border-gray-300 rounded">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!--Email-->
+                <div class="flex flex-col">
+                    <label for="email" class="font-bold mb-1">Email</label>
+                    <input type="email" id="email" name="email" placeholder="email@ejemplo.com" required
+                        class="p-2 border border-gray-300 rounded">
+                </div>
+
+                <!--Teléfono-->
+                <div class="flex flex-col">
+                    <label for="telefono" class="font-bold mb-1">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Número"
+                        class="p-2 border border-gray-300 rounded">
+                </div>
+            </div>
+
+            <!--Mensaje-->
+            <div class="flex flex-col">
+                <label for="comentario" class="font-bold mb-1">Mensaje</label>
+                <textarea id="comentario" name="comentario" rows="4" placeholder="Escribe aquí..."
+                    class="p-2 border border-gray-300 rounded resize-none"></textarea>
+            </div>
+
+            <!--Checkbox-->
+            <div class="flex items-center gap-2">
+                <input type="checkbox" id="suscripcion" name="suscripcion" class="w-4 h-4">
+                <label for="suscripcion" class="text-sm">
+                    Quiero suscribirme a la base de datos de Happinness & Co.
+                </label>
+            </div>
+
+            <!--Botón-->
+            <div class="pt-4 flex justify-end">
+                <button type="submit" class="bg-corporativo text-white font-bold py-2 px-6 rounded hover:opacity-90">
+                    Enviar <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+
+        </form>
+    </main>
+
+    <!--Footer-->
+    <div id="footer" class="mt-auto w-full"></div>
+    <script>
+        fetch("components/footer.html")
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("footer").innerHTML = data;
+            });
+    </script>
 </body>
 </html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Happiness &amp; Co</title>
+        <link>https://happinessco.com</link>
+        <description>Eventos y actividades para mejorar tu bienestar</description>
+        <language>es-es</language>
+        <pubDate>Wed, 26 Mar 2026 13:47:11 +0100</pubDate>
+        <lastBuildDate>Wed, 26 Mar 2026 13:47:11 +0100</lastBuildDate>
+        <item>
+            <title>Evento 1</title>
+            <link>https://happinessco.com/evento1</link>
+            <description>Descripción del evento 1</description>
+            <pubDate>Wed, 26 Mar 2026 13:47:11 +0100</pubDate>
+        </item>
+    </channel>
+</rss>

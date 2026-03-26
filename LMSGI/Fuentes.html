@@ -3,8 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <title>Happiness & Co - Fuentes</title>
+    <!--Imports-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="config/tailwind-config.js"></script>
+    <link rel="stylesheet" href="config/fonts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body>
-    
+<body class="bg-gradient-to-r from-corporativo/20 to-cine/20 flex flex-col min-h-screen">
+
+    <!--Header-->
+    <div id="header" class="sticky top-0 z-50"></div>
+    <script>
+        fetch("components/header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header").innerHTML = data;
+            });
+    </script>
+
+    <!--=====Contenido principal de la página=====-->
+    <main class="max-w-4xl mx-auto py-12 px-8 bg-white my-8 rounded-xl">
+        <h1 class="text-4xl font-bold mb-8 border-b-4 border-corporativo pb-2">Fuentes y Recursos</h1>
+        <p class="mb-10 leading-relaxed text-lg">
+            Listado de las fuentes y recursos externos utilizados para la construcción de este sitio web cultural.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <section >
+                <h2 class="text-2xl font-bold text-corporativo mb-6 flex items-center gap-3">
+                    <i class="fas fa-file-alt"></i> Páginas de referencia
+                </h2>
+                <div class="space-y-6">
+                    <ul>
+                        <li class="flex flex-col">
+                            <span class="font-bold">Turismo Madrid</span>
+                            <a href="https://www.esmadrid.com/agenda" class="text-blue-600 hover:underline text-sm italic">https://www.esmadrid.com/</a>
+                            <p class="text-xs text-gray-500">Eventos culturales de la ciudad de Madrid. (Esperaba algo más de la web de la capital).</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="flex flex-col">
+                            <span class="font-bold">Turismo Asturias</span>
+                            <a href="https://www.turismoasturias.es/es/agenda-de-asturias" class="text-blue-600 hover:underline text-sm italic">https://www.turismoasturias.es</a>
+                            <p class="text-xs text-gray-500">Formato de flexbox de eventos, hover, sticky header. Algo más local.</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="flex flex-col">
+                            <span class="font-bold">This is Galway</span>
+                            <a href="https://thisisgalway.ie/events/" class="text-blue-600 hover:underline text-sm italic">https://thisisgalway.ie</a>
+                            <p class="text-xs text-gray-500">Ciudad muy viva culturalmente donde residí por varios años, aunque esté hecho con Wordpress.</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            
+
+            <!-- Recursos Técnicos -->
+            <section>
+                <h2 class="text-2xl font-bold text-corporativo mb-6 flex items-center gap-3">
+                    <i class="fas fa-code"></i> Recursos Técnicos
+                </h2>
+                <ul class="space-y-4">
+                    <li class="flex flex-col bg-corporativo/25 p-6 rounded-lg border-l-4 border-corporativo">
+                        <span class="font-bold">FontAwesome</span>
+                        <a href="https://fontawesome.com" class="text-blue-600 hover:underline text-sm italic">https://fontawesome.com</a>
+                        <p class="text-xs text-gray-500">Iconos vectoriales utilizados para los enlaces a redes sociales en el pie de página y en eventos.</p>
+                    </li>
+                    <li class="flex flex-col bg-corporativo/25 p-6 rounded-lg border-l-4 border-corporativo">
+                        <span class="font-bold">Tailwind CSS (CDN)</span>
+                        <a href="https://tailwindcss.com" class="text-blue-600 hover:underline text-sm italic">https://tailwindcss.com</a>
+                        <p class="text-xs text-gray-500">Librería de estilos en tiempo real proporcionada vía CDN para el diseño visual del sitio.</p>
+                    </li>
+                    <li class="flex flex-col bg-corporativo/25 p-6 rounded-lg border-l-4 border-corporativo">
+                        <span class="font-bold">Google Antigravity</span>
+                        <a href="https://antigravity.google/" class="text-blue-600 hover:underline text-sm italic">https://antigravity.google/</a>
+                        <p class="text-xs text-gray-500">Plataforma de IA utilizada como herramienta complementaria en el desarrollo del HTML y CSS a través de tailwindcss.</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Textos y Tipografías -->
+            <section class="border-t border-corporativo/25 pt-8 mt-4">
+                <h2 class="text-2xl font-bold text-corporativo mb-6 flex items-center gap-3">
+                    <i class="fas fa-file-alt"></i> Textos y Tipografías
+                </h2>
+                <div class="space-y-6">
+                    <div class="bg-corporativo/25 p-6 rounded-lg border-l-4 border-corporativo">
+                        <p class="font-bold mb-2">Textos, descripciones y contenido</p>
+                        <p class="text-sm">
+                            Todos los textos, historia de la empresa y descripciones de eventos han sido elaborados desde cero expresamente para este proyecto.
+                        </p>
+                    </div>
+                    <div class="bg-corporativo/25 p-6 rounded-lg border-l-4 border-corporativo">
+                        <p class="font-bold mb-2">Tipografías</p>
+                        <p class="text-sm italic">
+                            Las fuentes "Asenine" y "Ar Chistry" han sido incorporadas de forma local, proporcionadas por el tutor del proyecto.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <!-- Recursos Visuales -->
+            <section class="border-t border-corporativo/25 pt-8 mt-4">
+                <h2 class="text-2xl font-bold text-corporativo mb-6 flex items-center gap-3">
+                    <i class="fas fa-image"></i> Recursos Visuales
+                </h2>
+                <ul class="space-y-4">
+                    <li class="flex flex-col">
+                        <span class="font-bold">Google Imágenes</span>
+                        <a href="https://images.google.com" class="text-blue-600 hover:underline text-sm italic">https://images.google.com</a>
+                        <p class="text-xs text-gray-500">Imágenes para el apartado de "Sobre Nosotros".</p>
+                    </li>
+                    <li class="flex flex-col">
+                        <span class="font-bold">Unsplash</span>
+                        <a href="https://unsplash.com" class="text-blue-600 hover:underline text-sm italic">https://unsplash.com</a>
+                        <p class="text-xs text-gray-500">Imágenes de alta calidad para el uso en eventos.</p>
+                    </li>
+                </ul>
+            </section>
+
+        </div>
+    </main>
+
+    <!--===== FOOTER exportado con Javascript=====-->
+    <div id="footer" class="mt-auto w-full"></div>
+    <script>
+        fetch("components/footer.html")
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("footer").innerHTML = data;
+            });
+    </script>
 </body>
 </html>

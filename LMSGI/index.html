@@ -2,15 +2,20 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Happiness & Co - Eventos</title>
-    <!--Imports generales-->
+    <title>Happiness & Co - Home</title>
+    <!-- TailwindCSS importado directamente al archivo HTML -->
+    <!--Incluyo la configuración, fuentes y estilos del proyecto en otros archivos-->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="config/tailwind-config.js"></script>
     <link rel="stylesheet" href="config/fonts.css">
+    <!-- FontAwesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-
-<body class="bg-gradient-to-r from-corporativo/20 to-cine/20 flex flex-col min-h-screen">
+<!--=====Cuerpo de la página=====-->
+<!-- Color gradiente de fondo, inspirado en los colores corporativos proporcionados-->
+<!--El cuerpo está dividido en 3 secciones: header, main y el footer-->
+<!--El cuerpo es flexible y ocupa toda la pantalla-->
+<body class="bg-gradient-to-r from-corporativo/20 via-exposiciones/20 to-cine/20 flex flex-col min-h-screen">
 
     <!--Header importado con JavaScript-->
     <div id="header" class="sticky top-0 z-50"></div>
@@ -22,15 +27,33 @@
             });
     </script>
 
+    <!--=====Evento Principal=====-->
+    <section class="relative w-full h-96">
+        <!--Imagen del evento con ancho completo-->
+        <img src="resources/photos/events/mainEvent.avif"
+             alt="Madreñes Fest"
+             class="w-full h-full object-cover">
+        <!-- Capa oscura sobre la imagen para mayor visibilidad-->
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <!--Texto color corporativo encima de la imagen-->
+        <div class="absolute inset-0 flex flex-col justify-end pt-10 px-10 pb-5 text-white max-w-5xl mx-auto">
+            <span class="bg-musica text-white text-xs font-bold px-3 py-1 rounded w-max mb-3 uppercase">Música</span>
+            <h1 class="text-5xl font-bold mb-2">Madreñes Fest 2026</h1>
+            <h2 class="text-lg pb-2">El mayor festival de música celta llega a Gijón. ¿Te lo vas a perder?</p>
+            <p class="text-sm pt-2">1 - 5 de Agosto | Jardines de la Universidad Laboral de Gijón</p>
+            <a href="eventos/proximos/Evento_Madrenes.html" class="mt-5 inline-block font-bold text-sm hover:underline">Ver evento <span class="font-archistry text-lg">&#38;</span></a>
+        </div>
+    </section>
+
     <!--=====Contenido principal de la página=====-->
-    <!--Similar a Home, pero sin el evento principal en grande-->
-    <main class="max-w-6xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-3 gap-12 w-full flex-grow">
+    <main class="max-w-6xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-3 gap-12 w-full">
         
-        <!--Columna izquierda-->
+        <!--Columna izquierda que ocupa 2/3 del ancho de la página-->
         <section class="md:col-span-2">
-            <h1 class="text-4xl font-bold mb-6 border-b-2 border-corporativo/30 pb-2">Próximos Eventos</h1>
-            
+            <!--Línea separadora con el color corporativo-->
+            <h2 class="text-2xl font-bold border-b-2 border-corporativo/30 pb-2 mb-6">Próximos Eventos</h2>
             <!--Columna con eventos-->
+            <!--Al hacer hover sobre un evento el bg se vuelve del color del evento con un 10% de opacidad para mayor legibilidad-->
             <div class="flex flex-col gap-8">
                 <!--Exposición -->
                 <article class="bg-white rounded-lg shadow-sm flex overflow-hidden transition-all hover:shadow-md hover:bg-exposiciones/5 cursor-pointer">
@@ -40,7 +63,7 @@
                         <span class="bg-exposiciones text-white text-xs font-bold px-2 py-1 rounded uppercase">Exposiciones</span>
                         <h3 class="text-xl font-bold mt-2 mb-1">Arte contra la Guerra</h3>
                         <p class="text-gray-500 text-sm mb-2 ">Museo Nicanor Piñole | 12 de Mayo - 29 de Junio de 2026</p>
-                        <p class="text-gray-600 text-justify text-sm mb-3">La segunda guerra mundial vista desde el pincel de los artistas contemporáneos. 
+                        <p class="text-justify text-sm mb-3">La segunda guerra mundial vista desde el pincel de los artistas contemporáneos. 
                             Una crítica a la deshumanización del hombre a través del arte.
                         </p>
                         <a href="eventos/proximos/Evento_Arte.html" class="text-exposiciones font-bold text-sm hover:underline">Ver evento <span class="font-archistry text-lg">&#38;</span></a>
@@ -55,7 +78,7 @@
                         <span class="bg-teatro text-white text-xs font-bold px-2 py-1 rounded uppercase">Teatro</span>
                         <h3 class="text-xl font-bold mt-2 mb-1">Luces de Bohemia</h3>
                         <p class="text-gray-500 text-sm mb-2">Teatro Jovellanos | 19 de Mayo de 2026</p>
-                        <p class="text-gray-600 text-justify text-sm mb-3">El grupo de teatro de Cangas de Onís representa la obra de Valle Inclán que dio vida al esperpento.</p>
+                        <p class="text-justify text-sm mb-3">El grupo de teatro de Cangas de Onís representa la obra de Valle Inclán que dio vida al esperpento.</p>
                         <a href="eventos/proximos/Evento_Teatro.html" class="text-teatro font-bold text-sm hover:underline">Ver evento <span class="font-archistry text-lg">&#38;</span></a>
                     </div>
                 </article>
@@ -68,27 +91,15 @@
                         <span class="bg-musica text-white text-xs font-bold px-2 py-1 rounded uppercase">Música</span>
                         <h3 class="text-xl font-bold mt-2 mb-1">Requiem de Verdi</h3>
                         <p class="text-gray-500 text-sm mb-2">Teatro Jovellanos | 30 de Mayo de 2026</p>
-                        <p class="text-gray-600 text-sm mb-3">La OSPA presenta el Requiem de Verdi, una oportunidad única para disfrutar de la majestuosidad coral.</p>
+                        <p class="text-justify text-sm mb-3">La OSPA presenta el Requiem de Verdi, una oportunidad única para disfrutar de la majestuosidad coral.</p>
                         <a href="eventos/proximos/Evento_Requiem.html" class="text-musica font-bold text-sm hover:underline">Ver evento <span class="font-archistry text-lg">&#38;</span></a>
                     </div>
                 </article>
 
-                <!-- Madreñes (August) -->
-                <article class="bg-white rounded-lg shadow-sm flex overflow-hidden transition-all hover:shadow-md hover:bg-musica/5 cursor-pointer">
-                    <img src="resources/photos/events/mainEvent.avif"
-                         alt="Madreñes Fest" class="w-48 object-cover">
-                    <div class="p-6">
-                        <span class="bg-musica text-white text-xs font-bold px-2 py-1 rounded uppercase">Música</span>
-                        <h3 class="text-xl font-bold mt-2 mb-1">Madreñes Fest 2026</h3>
-                        <p class="text-gray-500 text-sm mb-2 ">Universidad Laboral | 1-5 de Agosto de 2026</p>
-                        <p class="text-gray-600 text-justify text-sm mb-3">El mayor festival de música celta llega a Gijón. Tradición y modernidad se dan la mano.</p>
-                        <a href="eventos/proximos/Evento_Madrenes.html" class="text-musica font-bold text-sm hover:underline">Ver evento <span class="font-archistry text-lg">&#38;</span></a>
-                    </div>
-                </article>
             </div>
         </section>
 
-        <!--Columna derecha-->
+        <!--Columna derecha con recomendados-->
         <!--Import pestaña de recomendados-->
         <aside class="space-y-8 h-fit md:sticky md:top-24" id="recomendados-container">
             <!-- Contenido dinámico -->
@@ -102,7 +113,7 @@
         </script>
 
     </main>
-
+    
     <!--===== FOOTER exportado con Javascript=====-->
     <div id="footer" class="mt-auto w-full"></div>
     <script>
