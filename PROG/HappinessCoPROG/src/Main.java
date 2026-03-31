@@ -18,6 +18,10 @@ public class Main {
         HashMap<String, Usuario> usuarios = new HashMap<>();
         // Eventos
         HashMap<Integer, Evento> eventos = new HashMap<>();
+        // Favoritos
+        HashMap<String, Favoritos> favoritos = new HashMap<>();
+        // Galerias
+        HashMap<Integer, Galeria> galerias = new HashMap<>();
         do {
             System.out.println("\n=====MENÚ PRINCIPAL=====");
             System.out.println("1. Añadir usuario.");
@@ -62,14 +66,21 @@ public class Main {
                     break;
                 case 7:
                     // Añadir favorito
+                    mostrarEventos(eventos);
+                    mostrarUsuarios(usuarios);
+                    crearFavorito(favoritos, eventos, usuarios, sc);
                     System.out.println();
                     break;
                 case 8:
                     // Eliminar favorito
+                    mostrarFavoritos(favoritos);
+                    mostrarEventos(eventos);
+                    mostrarUsuarios(usuarios);
+                    eliminarFavorito(eventos, favoritos, usuarios, sc);
                     System.out.println();
                     break;
                 case 9:
-                    System.out.println();
+                    System.out.println("Saliendo del programa...");
                     break;
                 default:
                     System.out.println("Error. Opción no válida");
@@ -180,6 +191,9 @@ public class Main {
                 case "idEvento":
                     valido = validadorIdEvento(entrada);
                     break;
+                case "idGaleria":
+                    valido = validadorIdEvento(entrada);
+                    break;
                 default:
                     System.out.println("Error. Tipo de validación no reconocido.");
                     break;
@@ -231,7 +245,17 @@ public class Main {
             return;
         }
         usuarios.put(usuario.getEmail(), usuario);
-        System.out.println("Usuario agregado correctamente.");
+        System.out.println("\nUsuario agregado correctamente.\n======\n");
+    }
+
+    public static void mostrarUsuarios(HashMap<String, Usuario> usuarios) {
+        if (usuarios.isEmpty()) {
+            System.out.println("\nNo hay usuarios para mostrar.\n======\n");
+            return;
+        }
+        for (String email : usuarios.keySet()) {
+            System.out.println(usuarios.get(email));
+        }
     }
 
     // Eliminar usuario
@@ -253,8 +277,7 @@ public class Main {
         Evento eventoNuevo = new Evento();
         System.out.println("=====Creación de evento=====");
         // Fecha
-        System.out.println("Introduce la fecha del evento: ");
-        String fecha = pedirConIntentos(sc, "Introduce la fecha del evento: ", "fecha");
+        String fecha = pedirConIntentos(sc, "Introduce la fecha del evento: (dd/mm/aaaa)", "fecha");
         if (fecha == null) {
             return null;
         }
@@ -389,7 +412,11 @@ public class Main {
     public static void eliminarGaleria(HashMap<Integer, Evento> eventos, Scanner sc) {
         mostrarEventos(eventos);
         String idEventoString = pedirConIntentos(sc, "Introduce el ID del evento: ", "idEvento");
+        if (idEventoString == null) {
+            return;
+        }
         int idEvento = Integer.parseInt(idEventoString);
+
         if (!eventos.containsKey(idEvento)) {
             System.out.println("Error. El evento no existe.");
             return;
@@ -397,13 +424,71 @@ public class Main {
         Evento evento = eventos.get(idEvento);
         mostrarGalerias(evento);
         String idGaleriaString = pedirConIntentos(sc, "Introduce el ID de la galería: ", "idGaleria");
+        if (idGaleriaString == null) {
+            return;
+        }
         int idGaleria = Integer.parseInt(idGaleriaString);
-        if (!evento.getColeccionGalerias().contains(idGaleria)) {
+
+        Galeria aEliminar = null;
+        for (Galeria galeria : evento.getColeccionGalerias()) {
+            if (galeria.getId() == idGaleria) {
+                aEliminar = galeria;
+                break;
+            }
+        }
+        if (aEliminar == null) {
             System.out.println("Error. La galería no existe.");
             return;
         }
-        evento.getColeccionGalerias().remove(idGaleria);
+        evento.getColeccionGalerias().remove(aEliminar);
         System.out.println("Galería eliminada correctamente.");
+    }
+
+    public static void crearFavorito(HashMap<String, Favoritos> favoritos, HashMap<Integer, Evento> eventos,
+            HashMap<String, Usuario> usuarios, Scanner sc) {
+        mostrarEventos(eventos);
+        mostrarUsuarios(usuarios);
+
+        String idEventoString = pedirConIntentos(sc, "Introduce el ID del evento: ", "idEvento");
+        if (idEventoString == null) {
+            return;
+        }
+        int idEvento = Integer.parseInt(idEventoString);
+        if (!eventos.containsKey(idEvento)) {
+            System.out.println("Error. El evento no existe.");
+            return;
+        }
+
+        String emailUsuario = pedirConIntentos(sc, "Introduce el email del usuario: ", "email");
+        if (emailUsuario == null) {
+            return;
+        }
+        if (!usuarios.containsKey(emailUsuario)) {
+            System.out.println("Error. El usuario no existe.");
+            return;
+        }
+        Favoritos favorito = new Favoritos();
+        favorito.setIdEvento(idEvento);
+        favorito.setEmailUsuario(emailUsuario);
+        favoritos.put(emailUsuario, favorito);
+        System.out.println("\nFavorito creado correctamente.\n");
+    }
+
+    public static void mostrarFavoritos(HashMap<String, Favoritos> favoritos) {
+        if (favoritos.isEmpty()) {
+            System.out.println("No hay favoritos");
+            return;
+        }
+        for (Favoritos favorito : favoritos.values()) {
+            System.out.println(favorito);
+        }
+    }
+
+    // Eliminar favorito
+    public static void eliminarFavorito(HashMap<Integer, Evento> eventos, HashMap<String, Favoritos> favoritos,
+            HashMap<String, Usuario> usuarios, Scanner sc) {
+        mostrarFavoritos(favoritos);
+
     }
 
 }
@@ -447,4 +532,12 @@ public class Main {
  * Creacion de agregar evento.
  * Diferenciasr entre agregar (al hashmap) y crear/añadir (el objeto)
  * validarEntrada
+ * 
+ * Mejorar los toString
+ * EN mostrar usuarios no mostrar las contraseñas
+ * Si no hay usuarios no deberia mostrarse opciones de eliminar favvoritos ni
+ * galerias.
+ * Agregar otro submenu: MOstrar info de eventos, usuarios, etc.
+ * 
+ * 
  */

@@ -1,15 +1,15 @@
 public class Favoritos {
-    private String correoUsuario;
+    private String emailUsuario;
     private int idEvento;
 
     // Getters y Setters
 
-    public String getCorreoUsuario() {
-        return correoUsuario;
+    public String getEmailUsuario() {
+        return emailUsuario;
     }
 
-    public void setCorreoUsuario(String correoUsuario) {
-        this.correoUsuario = correoUsuario;
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
     }
 
     public int getIdEvento() {
@@ -20,10 +20,13 @@ public class Favoritos {
         this.idEvento = idEvento;
     }
 
-    // Constructor
+    // Constructor vacío
+    public Favoritos() {
+    }
 
-    public Favoritos(String correoUsuario, int idEvento) {
-        this.correoUsuario = correoUsuario;
+    // Constructor con parámetros
+    public Favoritos(String emailUsuario, int idEvento) {
+        this.emailUsuario = emailUsuario;
         this.idEvento = idEvento;
     }
 
@@ -31,7 +34,7 @@ public class Favoritos {
 
     @Override
     public String toString() {
-        return "Favoritos [correoUsuario=" + correoUsuario + ", idEvento=" + idEvento + "]";
+        return "Favoritos [emailUsuario=" + emailUsuario + ", idEvento=" + idEvento + "]";
     }
 
 }
