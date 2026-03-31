@@ -1,6 +1,17 @@
+package com.happinesssco.principal;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import com.happinesssco.servicio.EventoServicio;
+import com.happinesssco.servicio.FavoritoServicio;
+import com.happinesssco.servicio.GaleriaServicio;
+import com.happinesssco.servicio.UsuarioServicio;
+import com.happinesssco.modelo.Evento;
+import com.happinesssco.modelo.Favoritos;
+import com.happinesssco.modelo.Usuario;
+import com.happinesssco.utilidad.Mensajes;
 
 public class Main {
 
@@ -35,42 +46,42 @@ public class Main {
             try {
                 opcion = Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                System.out.println("Error. Debes introducir un número.");
+                System.out.println(Mensajes.ERROR_MENU_INPUT);
                 continue;
             }
 
             switch (opcion) {
                 case 1:
                     // Añadir usuario
-                    UsuarioAux.agregarUsuario(usuarios, sc);
+                    UsuarioServicio.agregarUsuario(usuarios, sc);
                     break;
                 case 2:
                     // Eliminar usuario
-                    UsuarioAux.eliminarUsuario(usuarios, sc);
+                    UsuarioServicio.eliminarUsuario(usuarios, sc);
                     break;
                 case 3:
                     // Añadir evento
-                    EventoAux.agregarEvento(eventos, sc);
+                    EventoServicio.agregarEvento(eventos, sc);
                     break;
                 case 4:
                     // Eliminar evento
-                    EventoAux.eliminarEvento(eventos, sc);
+                    EventoServicio.eliminarEvento(eventos, sc);
                     break;
                 case 5:
                     // Añadir Galería
-                    GaleriaAux.agregarGaleria(eventos, sc);
+                    GaleriaServicio.agregarGaleria(eventos, sc);
                     break;
                 case 6:
                     // Eliminar Galería
-                    GaleriaAux.eliminarGaleria(eventos, sc);
+                    GaleriaServicio.eliminarGaleria(eventos, sc);
                     break;
                 case 7:
                     // Añadir favorito
-                    FavoritoAux.crearFavorito(favoritos, eventos, usuarios, sc);
+                    FavoritoServicio.crearFavorito(favoritos, eventos, usuarios, sc);
                     break;
                 case 8:
                     // Eliminar favorito
-                    FavoritoAux.eliminarFavorito(favoritos, eventos, usuarios, sc);
+                    FavoritoServicio.eliminarFavorito(favoritos, eventos, usuarios, sc);
                     break;
                 case 9:
                     // Información en pantalla
@@ -80,7 +91,7 @@ public class Main {
                     System.out.println("Saliendo del programa...");
                     break;
                 default:
-                    System.out.println("Error. Opción no válida");
+                    System.out.println(Mensajes.ERROR_MENU_OPCION);
                     break;
             }
         } while (opcion != 10);
@@ -109,25 +120,25 @@ public class Main {
             try {
                 opcionSubMenu = Integer.parseInt(inputSubMenu);
             } catch (NumberFormatException e) {
-                System.out.println("Error. Debes introducir un número.");
+                System.out.println(Mensajes.ERROR_MENU_INPUT);
                 continue;
             }
 
             switch (opcionSubMenu) {
                 case 1:
-                    UsuarioAux.mostrarUsuarios(usuarios);
+                    UsuarioServicio.mostrarUsuarios(usuarios);
                     break;
                 case 2:
-                    EventoAux.mostrarEventos(eventos);
+                    EventoServicio.mostrarEventos(eventos);
                     break;
                 case 3:
-                    FavoritoAux.mostrarFavoritos(favoritos);
+                    FavoritoServicio.mostrarFavoritos(favoritos);
                     break;
                 case 4:
                     System.out.println("Saliendo del submenú...");
                     break;
                 default:
-                    System.out.println("Error. Opción no válida.");
+                    System.out.println(Mensajes.ERROR_MENU_OPCION);
                     break;
             }
         } while (opcionSubMenu != 4);
@@ -176,6 +187,7 @@ public class Main {
  *
  * Mejorar los toString
  * EN mostrar usuarios no mostrar las contraseñas
+ * agregar usuario + crear usuario, etc.
  * Si no hay usuarios no deberia mostrarse opciones de eliminar favvoritos ni
  * galerias.
  * Agregar otro submenu: MOstrar info de eventos, usuarios, etc.
@@ -187,4 +199,13 @@ public class Main {
  * manejo de errores en el submenú
  * creo clase validador a parte
  * Limpio el main
+ * Pedir repaso a la IA
+ * Organiación en distintos paquetes + arreglar los imports.
+ * Posibles mejoras:
+ * Validación de fecha,
+ * validación de email az@az.az
+ * Contraseñas más robustas (con Mayúsculas)
+ * Validador vacío repetido en dos clases. Borrado en usuarioServicio.
+ * 
+ * 
  */

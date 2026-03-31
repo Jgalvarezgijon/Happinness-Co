@@ -1,30 +1,37 @@
+package com.happinesssco.servicio;
+
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class GaleriaAux {
+import com.happinesssco.modelo.Evento;
+import com.happinesssco.modelo.Galeria;
+import com.happinesssco.utilidad.Mensajes;
+import com.happinesssco.utilidad.Validador;
+
+public class GaleriaServicio {
 
     private static int contadorIdGalerias = 0;
 
     public static void agregarGaleria(HashMap<Integer, Evento> eventos, Scanner sc) {
         if (eventos.isEmpty()) {
-            System.out.println("No hay eventos.");
+            System.out.println(Mensajes.ERROR_EVENTO_NO_HAY);
             return;
         }
 
-        EventoAux.mostrarEventos(eventos);
+        EventoServicio.mostrarEventos(eventos);
         String idEventoString = Validador.pedirConIntentos(sc, "Introduce el ID del evento: ", "id");
         if (idEventoString == null)
             return;
 
         int idEvento = Integer.parseInt(idEventoString);
         if (!eventos.containsKey(idEvento)) {
-            System.out.println("Error. El evento no existe.");
+            System.out.println(Mensajes.ERROR_EVENTO_NO_EXISTE);
             return;
         }
 
         String titulo = Validador.pedirConIntentos(sc, "Introduce el título de la galería: ", "generico");
         if (titulo == null) {
-            System.out.println("Error. No se ha podido crear la galería.");
+            System.out.println(Mensajes.ERROR_GALERIA_CREACION);
             return;
         }
 
@@ -40,18 +47,18 @@ public class GaleriaAux {
 
     public static void eliminarGaleria(HashMap<Integer, Evento> eventos, Scanner sc) {
         if (eventos.isEmpty()) {
-            System.out.println("No hay eventos.");
+            System.out.println(Mensajes.ERROR_EVENTO_NO_HAY);
             return;
         }
 
-        EventoAux.mostrarEventos(eventos);
+        EventoServicio.mostrarEventos(eventos);
         String idEventoString = Validador.pedirConIntentos(sc, "Introduce el ID del evento: ", "id");
         if (idEventoString == null)
             return;
 
         int idEvento = Integer.parseInt(idEventoString);
         if (!eventos.containsKey(idEvento)) {
-            System.out.println("Error. El evento no existe.");
+            System.out.println(Mensajes.ERROR_EVENTO_NO_EXISTE);
             return;
         }
 
@@ -72,7 +79,7 @@ public class GaleriaAux {
         }
 
         if (aEliminar == null) {
-            System.out.println("La galería no existe.");
+            System.out.println(Mensajes.ERROR_GALERIA_NO_EXISTE);
             return;
         }
         evento.getColeccionGalerias().remove(aEliminar);
@@ -81,7 +88,7 @@ public class GaleriaAux {
 
     public static void mostrarGalerias(Evento evento) {
         if (evento.getColeccionGalerias().isEmpty()) {
-            System.out.println("Este evento no tiene galerías.");
+            System.out.println(Mensajes.ERROR_GALERIA_NO_HAY);
             return;
         }
         System.out.println("\n=====Lista de galerías=====");

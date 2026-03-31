@@ -1,3 +1,5 @@
+package com.happinesssco.modelo;
+
 import java.util.ArrayList;
 
 public class Evento {
@@ -34,7 +36,7 @@ public class Evento {
         this.titulo = titulo;
     }
 
-    public void setColeccionGalerias(Galeria galeria) {
+    public void agregarGaleria(Galeria galeria) {
         this.coleccionGalerias.add(galeria);
     }
 

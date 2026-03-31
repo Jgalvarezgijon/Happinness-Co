@@ -1,3 +1,5 @@
+package com.happinesssco.modelo;
+
 public class Favoritos {
     private String emailUsuario;
     private int idEvento;

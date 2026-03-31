@@ -1,3 +1,5 @@
+package com.happinesssco.modelo;
+
 public class Usuario {
 
     private String nombre;

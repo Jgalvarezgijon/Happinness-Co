@@ -1,8 +1,14 @@
+package com.happinesssco.servicio;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class EventoAux {
+import com.happinesssco.modelo.Evento;
+import com.happinesssco.utilidad.Validador;
+import com.happinesssco.utilidad.Mensajes;
+
+public class EventoServicio {
 
     private static int contadorIdEventos = 0;
 
@@ -11,25 +17,25 @@ public class EventoAux {
 
         String fecha = Validador.pedirConIntentos(sc, "Introduce la fecha del evento (dd/mm/aaaa): ", "fecha");
         if (fecha == null) {
-            System.out.println("Error. No se ha podido crear el evento.");
+            System.out.println(Mensajes.ERROR_EVENTO_CREACION);
             return;
         }
 
         String titulo = Validador.pedirConIntentos(sc, "Introduce el título del evento: ", "generico");
         if (titulo == null) {
-            System.out.println("Error. No se ha podido crear el evento.");
+            System.out.println(Mensajes.ERROR_EVENTO_CREACION);
             return;
         }
 
         String ubicacion = Validador.pedirConIntentos(sc, "Introduce la ubicación del evento: ", "generico");
         if (ubicacion == null) {
-            System.out.println("Error. No se ha podido crear el evento.");
+            System.out.println(Mensajes.ERROR_EVENTO_CREACION);
             return;
         }
 
         String descripcion = Validador.pedirConIntentos(sc, "Introduce la descripción del evento: ", "generico");
         if (descripcion == null) {
-            System.out.println("Error. No se ha podido crear el evento.");
+            System.out.println(Mensajes.ERROR_EVENTO_CREACION);
             return;
         }
 
@@ -54,7 +60,7 @@ public class EventoAux {
 
         int id = Integer.parseInt(idString);
         if (!eventos.containsKey(id)) {
-            System.out.println("El evento no existe.");
+            System.out.println(Mensajes.ERROR_EVENTO_NO_EXISTE);
             return;
         }
         eventos.remove(id);
@@ -63,7 +69,7 @@ public class EventoAux {
 
     public static void mostrarEventos(HashMap<Integer, Evento> eventos) {
         if (eventos.isEmpty()) {
-            System.out.println("No hay eventos para mostrar.");
+            System.out.println(Mensajes.ERROR_EVENTO_NO_HAY);
             return;
         }
         System.out.println("\n=====Lista de eventos=====");

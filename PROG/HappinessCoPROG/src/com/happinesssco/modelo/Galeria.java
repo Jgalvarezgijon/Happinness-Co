@@ -1,3 +1,5 @@
+package com.happinesssco.modelo;
+
 public class Galeria {
     private int id;
     private String titulo;

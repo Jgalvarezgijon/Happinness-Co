@@ -1,15 +1,23 @@
+package com.happinesssco.servicio;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class FavoritoAux {
+import com.happinesssco.modelo.Evento;
+import com.happinesssco.modelo.Favoritos;
+import com.happinesssco.modelo.Usuario;
+import com.happinesssco.utilidad.Mensajes;
+import com.happinesssco.utilidad.Validador;
+
+public class FavoritoServicio {
 
     public static void crearFavorito(ArrayList<Favoritos> favoritos,
             HashMap<Integer, Evento> eventos,
             HashMap<String, Usuario> usuarios, Scanner sc) {
 
-        EventoAux.mostrarEventos(eventos);
-        UsuarioAux.mostrarUsuarios(usuarios);
+        EventoServicio.mostrarEventos(eventos);
+        UsuarioServicio.mostrarUsuarios(usuarios);
 
         String idEventoString = Validador.pedirConIntentos(sc, "Introduce el ID del evento: ", "id");
         if (idEventoString == null)
@@ -17,7 +25,7 @@ public class FavoritoAux {
 
         int idEvento = Integer.parseInt(idEventoString);
         if (!eventos.containsKey(idEvento)) {
-            System.out.println("Error. El evento no existe.");
+            System.out.println(Mensajes.ERROR_EVENTO_NO_EXISTE);
             return;
         }
 
@@ -26,13 +34,13 @@ public class FavoritoAux {
             return;
 
         if (!usuarios.containsKey(email)) {
-            System.out.println("Error. El usuario no existe.");
+            System.out.println(Mensajes.ERROR_USUARIO_NO_EXISTE);
             return;
         }
 
         for (Favoritos fav : favoritos) {
             if (fav.getEmailUsuario().equals(email) && fav.getIdEvento() == idEvento) {
-                System.out.println("Error. El favorito ya existe.");
+                System.out.println(Mensajes.ERROR_FAVORITO_YA_EXISTE);
                 return;
             }
         }
@@ -49,7 +57,7 @@ public class FavoritoAux {
             HashMap<String, Usuario> usuarios, Scanner sc) {
 
         if (favoritos.isEmpty()) {
-            System.out.println("No hay favoritos.");
+            System.out.println(Mensajes.ERROR_FAVORITO_NO_HAY);
             return;
         }
 
@@ -74,7 +82,7 @@ public class FavoritoAux {
         }
 
         if (aEliminar == null) {
-            System.out.println("El favorito no existe.");
+            System.out.println(Mensajes.ERROR_FAVORITO_NO_EXISTE);
             return;
         }
         favoritos.remove(aEliminar);
@@ -83,7 +91,7 @@ public class FavoritoAux {
 
     public static void mostrarFavoritos(ArrayList<Favoritos> favoritos) {
         if (favoritos.isEmpty()) {
-            System.out.println("No hay favoritos.");
+            System.out.println(Mensajes.ERROR_FAVORITO_NO_HAY);
             return;
         }
         System.out.println("\n=====Lista de favoritos=====");

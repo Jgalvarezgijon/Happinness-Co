@@ -1,4 +1,8 @@
+package com.happinesssco.utilidad;
+
 import java.util.Scanner;
+
+import com.happinesssco.servicio.UsuarioServicio;
 
 public class Validador {
 
@@ -13,13 +17,13 @@ public class Validador {
             boolean valido = false;
             switch (tipo) {
                 case "usuario":
-                    valido = UsuarioAux.validacionUsuario(entrada);
+                    valido = UsuarioServicio.validacionUsuario(entrada);
                     break;
                 case "email":
-                    valido = UsuarioAux.validacionEmail(entrada);
+                    valido = UsuarioServicio.validacionEmail(entrada);
                     break;
                 case "password":
-                    valido = UsuarioAux.validacionPassword(entrada);
+                    valido = UsuarioServicio.validacionPassword(entrada);
                     break;
                 case "fecha":
                     valido = validadorFecha(entrada);

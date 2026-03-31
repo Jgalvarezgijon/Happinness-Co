@@ -1,42 +1,48 @@
+package com.happinesssco.servicio;
+
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class UsuarioAux {
+import com.happinesssco.modelo.Usuario;
+import com.happinesssco.utilidad.Validador;
+import com.happinesssco.utilidad.Mensajes;
+
+public class UsuarioServicio {
 
     // =====VALIDACIONES=====
     public static boolean validacionUsuario(String usuario) {
-        if (!validadorVacio(usuario))
+        if (!Validador.validadorVacio(usuario))
             return false;
         if (usuario.length() < 8) {
-            System.out.println("Error. El usuario debe tener al menos 8 caracteres.");
+            System.out.println(Mensajes.ERROR_LONGITUD);
             return false;
         }
         return true;
     }
 
     public static boolean validacionEmail(String email) {
-        if (!validadorVacio(email))
+        if (!Validador.validadorVacio(email))
             return false;
         if (!email.contains("@")) {
-            System.out.println("Error. El email debe contener @.");
+            System.out.println(Mensajes.ERROR_USUARIO_EMAIL_ARROBA);
             return false;
         }
         if (!email.contains(".")) {
-            System.out.println("Error. Email inválido.");
+            System.out.println(Mensajes.ERROR_USUARIO_EMAIL_PUNTO);
             return false;
         }
         return true;
     }
 
     public static boolean validacionPassword(String password) {
-        if (!validadorVacio(password))
+        if (!Validador.validadorVacio(password))
             return false;
         if (password.length() < 8) {
-            System.out.println("Error. La contraseña debe tener al menos 8 caracteres.");
+            System.out.println(Mensajes.ERROR_LONGITUD);
             return false;
         }
         if (!password.matches(".*\\d.*")) {
-            System.out.println("Error. La contraseña debe tener al menos un número.");
+            System.out.println(Mensajes.ERROR_USUARIO_PASSWORD_NUMERO);
             return false;
         }
         return true;
@@ -48,24 +54,24 @@ public class UsuarioAux {
 
         String nombre = Validador.pedirConIntentos(sc, "Introduce un nombre de usuario: ", "usuario");
         if (nombre == null) {
-            System.out.println("Error. No se ha podido crear el usuario.");
+            System.out.println(Mensajes.ERROR_USUARIO_CREACION);
             return;
         }
 
         String email = Validador.pedirConIntentos(sc, "Introduce un email: ", "email");
         if (email == null) {
-            System.out.println("Error. No se ha podido crear el usuario.");
+            System.out.println(Mensajes.ERROR_USUARIO_CREACION);
             return;
         }
 
         String password = Validador.pedirConIntentos(sc, "Introduce una contraseña: ", "password");
         if (password == null) {
-            System.out.println("Error. No se ha podido crear el usuario.");
+            System.out.println(Mensajes.ERROR_USUARIO_CREACION);
             return;
         }
 
         if (usuarios.containsKey(email)) {
-            System.out.println("El usuario ya existe.");
+            System.out.println(Mensajes.ERROR_USUARIO_YA_EXISTE);
             return;
         }
 
@@ -81,7 +87,7 @@ public class UsuarioAux {
         System.out.print("Introduce el email del usuario a eliminar: ");
         String email = sc.nextLine();
         if (!usuarios.containsKey(email)) {
-            System.out.println("El usuario no existe.");
+            System.out.println(Mensajes.ERROR_USUARIO_NO_EXISTE);
             return;
         }
         usuarios.remove(email);
@@ -90,21 +96,12 @@ public class UsuarioAux {
 
     public static void mostrarUsuarios(HashMap<String, Usuario> usuarios) {
         if (usuarios.isEmpty()) {
-            System.out.println("No hay usuarios para mostrar.");
+            System.out.println(Mensajes.ERROR_USUARIO_NO_HAY);
             return;
         }
         System.out.println("\n=====Lista de usuarios=====");
         for (Usuario u : usuarios.values()) {
             System.out.println(u);
         }
-    }
-
-    // =====VALIDADORES PROPIOS=====
-    private static boolean validadorVacio(String entrada) {
-        if (entrada.isEmpty()) {
-            System.out.println("Error. Este campo no puede estar vacío.");
-            return false;
-        }
-        return true;
     }
 }
