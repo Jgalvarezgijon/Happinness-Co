@@ -4,24 +4,18 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static final int MAX_INTENTOS = 3;
-    public static int contadorIdEventos = 0;
-    public static int contadorIdGalerias = 0;
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Menú interactivo con bucle while.
-        int opcion = 0;
-        // =====HashMaps=====
+        // =====Listas instanciadas=====
         // Usuarios
         HashMap<String, Usuario> usuarios = new HashMap<>();
         // Eventos
         HashMap<Integer, Evento> eventos = new HashMap<>();
         // Favoritos
-        HashMap<String, Favoritos> favoritos = new HashMap<>();
-        // Galerias
-        HashMap<Integer, Galeria> galerias = new HashMap<>();
+        ArrayList<Favoritos> favoritos = new ArrayList<>();
+        int opcion = 0;
+
         do {
             System.out.println("\n=====MENÚ PRINCIPAL=====");
             System.out.println("1. Añadir usuario.");
@@ -32,465 +26,112 @@ public class Main {
             System.out.println("6. Eliminar galería.");
             System.out.println("7. Añadir favorito.");
             System.out.println("8. Eliminar favorito.");
-            System.out.println("9. Salir.");
+            System.out.println("9. Mostrar información.");
+            System.out.println("10. Salir.");
             System.out.print("Elige una opción: ");
 
-            opcion = sc.nextInt();
-            sc.nextLine();
-            switch (opcion) {
+            String input = sc.nextLine();
+            // Manejo de excepciones
+            try {
+                opcion = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Error. Debes introducir un número.");
+                continue;
+            }
 
+            switch (opcion) {
                 case 1:
                     // Añadir usuario
-                    agregarUsuario(usuarios, sc);
+                    UsuarioAux.agregarUsuario(usuarios, sc);
                     break;
                 case 2:
                     // Eliminar usuario
-                    eliminarUsuario(usuarios, sc);
+                    UsuarioAux.eliminarUsuario(usuarios, sc);
                     break;
-
                 case 3:
                     // Añadir evento
-                    agregarEvento(eventos, sc);
+                    EventoAux.agregarEvento(eventos, sc);
                     break;
                 case 4:
                     // Eliminar evento
-                    eliminarEvento(eventos, sc);
+                    EventoAux.eliminarEvento(eventos, sc);
                     break;
                 case 5:
                     // Añadir Galería
-                    agregarGaleria(eventos, sc);
+                    GaleriaAux.agregarGaleria(eventos, sc);
                     break;
                 case 6:
                     // Eliminar Galería
-                    eliminarGaleria(eventos, sc);
+                    GaleriaAux.eliminarGaleria(eventos, sc);
                     break;
                 case 7:
                     // Añadir favorito
-                    mostrarEventos(eventos);
-                    mostrarUsuarios(usuarios);
-                    crearFavorito(favoritos, eventos, usuarios, sc);
-                    System.out.println();
+                    FavoritoAux.crearFavorito(favoritos, eventos, usuarios, sc);
                     break;
                 case 8:
                     // Eliminar favorito
-                    mostrarFavoritos(favoritos);
-                    mostrarEventos(eventos);
-                    mostrarUsuarios(usuarios);
-                    eliminarFavorito(eventos, favoritos, usuarios, sc);
-                    System.out.println();
+                    FavoritoAux.eliminarFavorito(favoritos, eventos, usuarios, sc);
                     break;
                 case 9:
+                    // Información en pantalla
+                    mostrarMenuInfo(usuarios, eventos, favoritos, sc);
+                    break;
+                case 10:
                     System.out.println("Saliendo del programa...");
                     break;
                 default:
                     System.out.println("Error. Opción no válida");
                     break;
             }
-        } while (opcion != 9);
+        } while (opcion != 10);
 
+        sc.close();
     }
 
-    // =====VALIDACIONES=====
-    // Validacion de campos vacíos
-    public static boolean validadorVacio(String entrada) {
-        if (entrada.isEmpty()) {
-            System.out.println("Error. Este campo no puede estar vacío");
-            return false;
-        }
-        return true;
-    }
+    // Submenú de información
+    private static void mostrarMenuInfo(HashMap<String, Usuario> usuarios,
+            HashMap<Integer, Evento> eventos,
+            ArrayList<Favoritos> favoritos,
+            Scanner sc) {
 
-    // USUARIO
-    // Validacion de usuario
-    public static boolean validacionUsuario(String usuario) {
-        if (!validadorVacio(usuario))
-            return false;
-        if (usuario.length() < 8) {
-            System.out.println("Error. El usuario debe tener al menos 8 caracteres.");
-            return false;
-        }
-        return true;
-    }
+        int opcionSubMenu = 0;
 
-    // Validacion de email
-    public static boolean validacionEmail(String email) {
-        if (!validadorVacio(email))
-            return false;
-        if (!email.contains("@")) {
-            System.out.println("Error. El email debe contener @.");
-            return false;
-        }
-        if (!email.contains(".")) {
-            System.out.println("Error. Email inválido.");
-            return false;
-        }
-        return true;
-    }
+        do {
+            System.out.println("\n=====INFORMACIÓN EN PANTALLA=====");
+            System.out.println("1. Mostrar usuarios.");
+            System.out.println("2. Mostrar eventos.");
+            System.out.println("3. Mostrar favoritos.");
+            System.out.println("4. Salir.");
+            System.out.print("Elige una opción: ");
 
-    // Validacion de contraseña
-    public static boolean validacionPassword(String password) {
-        if (!validadorVacio(password))
-            return false;
-        if (password.length() < 8) {
-            System.out.println("Error. La contraseña debe tener al menos 8 caracteres.");
-            return false;
-        }
-        if (!password.matches(".*\\d.*")) {
-            System.out.println("Error. La contraseña debe tener al menos un número.");
-            return false;
-        }
-        return true;
-    }
+            String inputSubMenu = sc.nextLine();
+            // Manejo de excepciones
+            try {
+                opcionSubMenu = Integer.parseInt(inputSubMenu);
+            } catch (NumberFormatException e) {
+                System.out.println("Error. Debes introducir un número.");
+                continue;
+            }
 
-    // EVENTO
-    // Validacion de fecha
-    public static boolean validadorFecha(String fecha) {
-        if (!validadorVacio(fecha)) {
-            return false;
-        }
-        if (!fecha.matches("\\d{2}/\\d{2}/\\d{4}")) {
-            System.out.println("Error. Formato de fecha inválido.");
-            return false;
-        }
-        return true;
-    }
-
-    // Validador de ID
-    public static boolean validadorIdEvento(String idEvento) {
-        if (!idEvento.matches("\\d{1,}")) {
-            System.out.println("Error. El ID debe ser un número.");
-            return false;
-        }
-        return true;
-    }
-
-    // INPUT REUTILIZABLE
-    public static String pedirConIntentos(Scanner sc, String mensaje, String tipo) {
-        int intentos = 0;
-        while (intentos < MAX_INTENTOS) {
-            System.out.println(mensaje);
-            String entrada = sc.nextLine();
-
-            boolean valido = false;
-            switch (tipo) {
-                case "usuario":
-                    valido = validacionUsuario(entrada);
+            switch (opcionSubMenu) {
+                case 1:
+                    UsuarioAux.mostrarUsuarios(usuarios);
                     break;
-                case "email":
-                    valido = validacionEmail(entrada);
+                case 2:
+                    EventoAux.mostrarEventos(eventos);
                     break;
-                case "password":
-                    valido = validacionPassword(entrada);
+                case 3:
+                    FavoritoAux.mostrarFavoritos(favoritos);
                     break;
-                case "fecha":
-                    valido = validadorFecha(entrada);
-                    break;
-                case "generico":
-                    valido = validadorVacio(entrada);
-                    break;
-                case "idEvento":
-                    valido = validadorIdEvento(entrada);
-                    break;
-                case "idGaleria":
-                    valido = validadorIdEvento(entrada);
+                case 4:
+                    System.out.println("Saliendo del submenú...");
                     break;
                 default:
-                    System.out.println("Error. Tipo de validación no reconocido.");
+                    System.out.println("Error. Opción no válida.");
                     break;
             }
-            if (valido) {
-                return entrada;
-            } else {
-                intentos++;
-            }
-        }
-        return null;
+        } while (opcionSubMenu != 4);
     }
-
-    // =====USUARIO=====
-    // Añadir usuario
-    public static Usuario anadirUsuario(Scanner sc) {
-
-        Usuario usuarioNuevo = new Usuario();
-        System.out.println("\n=====Creación de usuario=====");
-
-        String nombre = pedirConIntentos(sc, "\nIntroduce un nombre de usuario: ", "usuario");
-        if (nombre == null) {
-            return null;
-        }
-        String email = pedirConIntentos(sc, "\nIntroduce un email: ", "email");
-        if (email == null) {
-            return null;
-        }
-        String password = pedirConIntentos(sc, "\nIntroduce una contraseña: ", "password");
-        if (password == null) {
-            return null;
-        }
-
-        usuarioNuevo.setNombre(nombre);
-        usuarioNuevo.setEmail(email);
-        usuarioNuevo.setPassword(password);
-        return usuarioNuevo;
-    }
-
-    // Agregar usuario
-    public static void agregarUsuario(HashMap<String, Usuario> usuarios, Scanner sc) {
-        Usuario usuario = anadirUsuario(sc);
-        if (usuario == null) {
-            System.out.println("Error. No se ha podido crear el usuario.");
-            return;
-        }
-        if (usuarios.containsKey(usuario.getEmail())) {
-            System.out.println("Error. El usuario ya existe.");
-            return;
-        }
-        usuarios.put(usuario.getEmail(), usuario);
-        System.out.println("\nUsuario agregado correctamente.\n======\n");
-    }
-
-    public static void mostrarUsuarios(HashMap<String, Usuario> usuarios) {
-        if (usuarios.isEmpty()) {
-            System.out.println("\nNo hay usuarios para mostrar.\n======\n");
-            return;
-        }
-        for (String email : usuarios.keySet()) {
-            System.out.println(usuarios.get(email));
-        }
-    }
-
-    // Eliminar usuario
-    public static void eliminarUsuario(HashMap<String, Usuario> usuarios, Scanner sc) {
-        System.out.print("Introduce el email del usuario a eliminar: ");
-        String email = sc.nextLine();
-        if (usuarios.containsKey(email)) {
-            Usuario eliminado = usuarios.get(email);
-            usuarios.remove(email);
-            System.out.println("El usuario " + eliminado.getNombre() + " ha sido eliminado correctamente.");
-        } else {
-            System.out.println("Error. El usuario no existe.");
-        }
-    }
-
-    // =====EVENTO=====
-    // Añadir evento
-    public static Evento anadirEvento(Scanner sc) {
-        Evento eventoNuevo = new Evento();
-        System.out.println("=====Creación de evento=====");
-        // Fecha
-        String fecha = pedirConIntentos(sc, "Introduce la fecha del evento: (dd/mm/aaaa)", "fecha");
-        if (fecha == null) {
-            return null;
-        }
-        eventoNuevo.setFecha(fecha);
-
-        // Título
-        String titulo = pedirConIntentos(sc, "Introduce el título del evento: ", "generico");
-        if (titulo == null) {
-            return null;
-        }
-        eventoNuevo.setTitulo(titulo);
-
-        // Ubiucacion
-        String ubicacion = pedirConIntentos(sc, "Introduce la ubicación del evento: ", "generico");
-        if (ubicacion == null) {
-            return null;
-        }
-        eventoNuevo.setUbicacion(ubicacion);
-
-        // Descripción
-        String descripcion = pedirConIntentos(sc, "Introduce la descripción del evento: ", "generico");
-        if (descripcion == null) {
-            return null;
-        }
-        eventoNuevo.setDescripcion(descripcion);
-        // ID de Evento
-        contadorIdEventos++;
-        eventoNuevo.setId(contadorIdEventos);
-
-        // Creación de galería vacia y adición de la misma al evento
-        ArrayList<Galeria> coleccionGalerias = new ArrayList<>();
-        eventoNuevo.setColeccionGalerias(coleccionGalerias);
-
-        return eventoNuevo;
-    }
-
-    // Agregar evento
-    public static void agregarEvento(HashMap<Integer, Evento> eventos, Scanner sc) {
-        Evento evento = anadirEvento(sc);
-        if (evento == null) {
-            System.out.println("Error. No se ha podido crear el evento.");
-            return;
-        }
-        eventos.put(evento.getId(), evento);
-        System.out.println("Evento creado correctamente.");
-    }
-
-    // Mostrar Eventos
-    public static void mostrarEventos(HashMap<Integer, Evento> eventos) {
-        if (eventos.isEmpty()) {
-            System.out.println("No hay eventos para mostrar.");
-            return;
-        }
-        System.out.println("\n=====Lista de eventos=====");
-        for (Evento evento : eventos.values()) {
-            System.out.println(evento);
-        }
-    }
-
-    // Eliminar evento:
-    public static void eliminarEvento(HashMap<Integer, Evento> eventos, Scanner sc) {
-        System.out.println("Mostrando listado de eventos: ");
-        mostrarEventos(eventos);
-
-        String idAEliminar = pedirConIntentos(sc, "Introduce el ID del evento a eliminar: ", "idEvento");
-        if (idAEliminar == null) {
-            return;
-        }
-        if (eventos.containsKey(Integer.parseInt(idAEliminar))) {
-            Evento eventoAEliminar = eventos.get(Integer.parseInt(idAEliminar));
-            eventos.remove(Integer.parseInt(idAEliminar));
-            System.out.println("El evento " + eventoAEliminar.getTitulo() + " con ID " + idAEliminar
-                    + " ha sido eliminado correctamente.");
-        } else {
-            System.out.println("Error. El evento no existe.");
-        }
-    }
-
-    // =====GALERIAS=====
-    // Crear galeria
-    public static Galeria crearGaleria(Scanner sc, int idEvento) {
-        String titulo = pedirConIntentos(sc, "Introduce el título de la galería: ", "generico");
-        if (titulo == null) {
-            return null;
-        }
-        Galeria galeria = new Galeria();
-        contadorIdGalerias++;
-        galeria.setId(contadorIdGalerias);
-        galeria.setTitulo(titulo);
-        galeria.setIdEvento(idEvento);
-        return galeria;
-    }
-
-    // Agregar galeria
-    public static void agregarGaleria(HashMap<Integer, Evento> eventos, Scanner sc) {
-        if (eventos.isEmpty()) {
-            System.out.println("No hay eventos");
-            return;
-        }
-        mostrarEventos(eventos);
-        String idEventoString = pedirConIntentos(sc, "Introduce el ID del evento: ", "idEvento");
-        if (idEventoString == null) {
-            return;
-        }
-        int idEvento = Integer.parseInt(idEventoString);
-
-        if (!eventos.containsKey(idEvento)) {
-            System.out.println("Error. El evento no existe.");
-            return;
-        }
-        Galeria galeria = crearGaleria(sc, idEvento);
-        if (galeria == null) {
-            System.out.println("Error. No se ha podido crear la galería.");
-            return;
-        }
-        Evento evento = eventos.get(idEvento);
-        evento.getColeccionGalerias().add(galeria);
-        System.out.println("Galería creada correctamente.");
-    }
-
-    // Mostrar galerías
-    public static void mostrarGalerias(Evento evento) {
-        if (evento.getColeccionGalerias().isEmpty()) {
-            System.out.println("El evento no tiene galerías");
-        }
-        for (Galeria galeria : evento.getColeccionGalerias()) {
-            System.out.println(galeria);
-        }
-    }
-
-    // Eliminar galería
-    public static void eliminarGaleria(HashMap<Integer, Evento> eventos, Scanner sc) {
-        mostrarEventos(eventos);
-        String idEventoString = pedirConIntentos(sc, "Introduce el ID del evento: ", "idEvento");
-        if (idEventoString == null) {
-            return;
-        }
-        int idEvento = Integer.parseInt(idEventoString);
-
-        if (!eventos.containsKey(idEvento)) {
-            System.out.println("Error. El evento no existe.");
-            return;
-        }
-        Evento evento = eventos.get(idEvento);
-        mostrarGalerias(evento);
-        String idGaleriaString = pedirConIntentos(sc, "Introduce el ID de la galería: ", "idGaleria");
-        if (idGaleriaString == null) {
-            return;
-        }
-        int idGaleria = Integer.parseInt(idGaleriaString);
-
-        Galeria aEliminar = null;
-        for (Galeria galeria : evento.getColeccionGalerias()) {
-            if (galeria.getId() == idGaleria) {
-                aEliminar = galeria;
-                break;
-            }
-        }
-        if (aEliminar == null) {
-            System.out.println("Error. La galería no existe.");
-            return;
-        }
-        evento.getColeccionGalerias().remove(aEliminar);
-        System.out.println("Galería eliminada correctamente.");
-    }
-
-    public static void crearFavorito(HashMap<String, Favoritos> favoritos, HashMap<Integer, Evento> eventos,
-            HashMap<String, Usuario> usuarios, Scanner sc) {
-        mostrarEventos(eventos);
-        mostrarUsuarios(usuarios);
-
-        String idEventoString = pedirConIntentos(sc, "Introduce el ID del evento: ", "idEvento");
-        if (idEventoString == null) {
-            return;
-        }
-        int idEvento = Integer.parseInt(idEventoString);
-        if (!eventos.containsKey(idEvento)) {
-            System.out.println("Error. El evento no existe.");
-            return;
-        }
-
-        String emailUsuario = pedirConIntentos(sc, "Introduce el email del usuario: ", "email");
-        if (emailUsuario == null) {
-            return;
-        }
-        if (!usuarios.containsKey(emailUsuario)) {
-            System.out.println("Error. El usuario no existe.");
-            return;
-        }
-        Favoritos favorito = new Favoritos();
-        favorito.setIdEvento(idEvento);
-        favorito.setEmailUsuario(emailUsuario);
-        favoritos.put(emailUsuario, favorito);
-        System.out.println("\nFavorito creado correctamente.\n");
-    }
-
-    public static void mostrarFavoritos(HashMap<String, Favoritos> favoritos) {
-        if (favoritos.isEmpty()) {
-            System.out.println("No hay favoritos");
-            return;
-        }
-        for (Favoritos favorito : favoritos.values()) {
-            System.out.println(favorito);
-        }
-    }
-
-    // Eliminar favorito
-    public static void eliminarFavorito(HashMap<Integer, Evento> eventos, HashMap<String, Favoritos> favoritos,
-            HashMap<String, Usuario> usuarios, Scanner sc) {
-        mostrarFavoritos(favoritos);
-
-    }
-
 }
 
 // Creación de clases con atributos privados, getter, setter toString y
@@ -532,12 +173,18 @@ public class Main {
  * Creacion de agregar evento.
  * Diferenciasr entre agregar (al hashmap) y crear/añadir (el objeto)
  * validarEntrada
- * 
+ *
  * Mejorar los toString
  * EN mostrar usuarios no mostrar las contraseñas
  * Si no hay usuarios no deberia mostrarse opciones de eliminar favvoritos ni
  * galerias.
  * Agregar otro submenu: MOstrar info de eventos, usuarios, etc.
- * 
- * 
+ *
+ * InputMissmatch Exception con las opciones del menú. Cambiar a try catch con
+ * un String como input --> Integer.parseInt();
+ * Crear clases de servicio para cada objeto. Mayor limpieza en el código
+ * Paso los contadores globales a privados.
+ * manejo de errores en el submenú
+ * creo clase validador a parte
+ * Limpio el main
  */
