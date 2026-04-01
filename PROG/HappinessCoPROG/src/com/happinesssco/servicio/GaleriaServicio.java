@@ -12,12 +12,23 @@ public class GaleriaServicio {
 
     private static int contadorIdGalerias = 0;
 
+    /**
+     * Agrega una galería a un evento. Primero muestra los eventos existentes y
+     * solicita al usuario que introduzca el ID del evento. Luego solicita al
+     * usuario que introduzca el título de la galería.
+     * 
+     * @param eventos HashMap de eventos
+     * @param sc      Scanner para entrada de datos por teclado
+     */
     public static void agregarGaleria(HashMap<Integer, Evento> eventos, Scanner sc) {
+        System.out.println("=====Creación de galería=====");
+        // Comprueba que eventos no esté vacío (No hay galerias si no hay eventos)
         if (eventos.isEmpty()) {
             System.out.println(Mensajes.ERROR_EVENTO_NO_HAY);
             return;
         }
 
+        // Muestra los eventos y el usuario elige uno
         EventoServicio.mostrarEventos(eventos);
         String idEventoString = Validador.pedirConIntentos(sc, "Introduce el ID del evento: ", "id");
         if (idEventoString == null)
@@ -29,28 +40,40 @@ public class GaleriaServicio {
             return;
         }
 
+        // Solicita el título de la galería
         String titulo = Validador.pedirConIntentos(sc, "Introduce el título de la galería: ", "generico");
         if (titulo == null) {
             System.out.println(Mensajes.ERROR_GALERIA_CREACION);
             return;
         }
 
+        // Crea la galería con el constructor
         contadorIdGalerias++;
-        Galeria nueva = new Galeria();
-        nueva.setId(contadorIdGalerias);
-        nueva.setTitulo(titulo);
-        nueva.setIdEvento(idEvento);
+        Galeria nuevaGaleria = new Galeria(contadorIdGalerias, titulo, idEvento);
 
-        eventos.get(idEvento).getColeccionGalerias().add(nueva);
+        eventos.get(idEvento).getColeccionGalerias().add(nuevaGaleria);
         System.out.println("Galería creada correctamente.");
     }
 
+    /**
+     * Elimina una galería de un evento. Primero muestra los eventos existentes y
+     * solicita al usuario que introduzca el ID del evento. Luego solicita al
+     * usuario que introduzca el ID de la galería. Misma lógica de validación que en
+     * agregarEvento.
+     * 
+     * @param eventos HashMap de eventos
+     * @param sc      Scanner para entrada de datos por teclado
+     */
     public static void eliminarGaleria(HashMap<Integer, Evento> eventos, Scanner sc) {
+
+        System.out.println("=====Eliminación de galería=====");
+        // Comprueba que eventos no esté vacío (No hay galerias si no hay eventos)
         if (eventos.isEmpty()) {
             System.out.println(Mensajes.ERROR_EVENTO_NO_HAY);
             return;
         }
 
+        // Muestra los eventos y el usuario elige uno
         EventoServicio.mostrarEventos(eventos);
         String idEventoString = Validador.pedirConIntentos(sc, "Introduce el ID del evento: ", "id");
         if (idEventoString == null)
@@ -62,6 +85,7 @@ public class GaleriaServicio {
             return;
         }
 
+        // Muestra las galerias del evento y el usuario elige una
         Evento evento = eventos.get(idEvento);
         mostrarGalerias(evento);
 
@@ -71,6 +95,9 @@ public class GaleriaServicio {
 
         int idGaleria = Integer.parseInt(idGaleriaString);
         Galeria aEliminar = null;
+
+        // Busca la galería en el ArrayList iterando. Si coincide con el idGaleria, lo
+        // guarda en la variable aEliminar
         for (Galeria g : evento.getColeccionGalerias()) {
             if (g.getId() == idGaleria) {
                 aEliminar = g;
@@ -78,14 +105,21 @@ public class GaleriaServicio {
             }
         }
 
+        // Si no se encuentra la galería, muestra un mensaje de error
         if (aEliminar == null) {
             System.out.println(Mensajes.ERROR_GALERIA_NO_EXISTE);
             return;
         }
+        // Elimina la galería
         evento.getColeccionGalerias().remove(aEliminar);
         System.out.println("Galería eliminada correctamente.");
     }
 
+    /**
+     * Muestra las galerías de un evento
+     * 
+     * @param evento Evento
+     */
     public static void mostrarGalerias(Evento evento) {
         if (evento.getColeccionGalerias().isEmpty()) {
             System.out.println(Mensajes.ERROR_GALERIA_NO_HAY);

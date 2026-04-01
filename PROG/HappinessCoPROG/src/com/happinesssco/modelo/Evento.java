@@ -66,26 +66,24 @@ public class Evento {
 
     // Constructor vacío
     public Evento() {
+        this.coleccionGalerias = new ArrayList<>();
     }
 
     // Constructor con parámetros
-
-    public Evento(int id, String fecha, String titulo, String ubicacion, String descripcion,
-            ArrayList<Galeria> coleccionGalerias) {
+    public Evento(int id, String fecha, String titulo, String ubicacion, String descripcion) {
         this.id = id;
         this.fecha = fecha;
         this.titulo = titulo;
         this.ubicacion = ubicacion;
         this.descripcion = descripcion;
-        this.coleccionGalerias = coleccionGalerias;
+        this.coleccionGalerias = new ArrayList<>();
     }
 
     // toString
-
     @Override
     public String toString() {
-        return "Eventos [id=" + id + ", fecha=" + fecha + ", titulo=" + titulo + ", ubicacion=" + ubicacion
-                + ", descripcion=" + descripcion + ", coleccionGalerias=" + coleccionGalerias + "]";
+        return "Evento || ID: " + id + " || Fecha: " + fecha + " \nTitulo: " + titulo + " || Ubicacion: " + ubicacion
+                + " \nDescripcion: " + descripcion + " \nGalerias: " + coleccionGalerias;
     }
 
 }

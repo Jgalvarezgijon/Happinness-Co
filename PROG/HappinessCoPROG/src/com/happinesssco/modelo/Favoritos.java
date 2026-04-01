@@ -1,11 +1,11 @@
 package com.happinesssco.modelo;
 
 public class Favoritos {
+
     private String emailUsuario;
     private int idEvento;
 
     // Getters y Setters
-
     public String getEmailUsuario() {
         return emailUsuario;
     }
@@ -33,10 +33,9 @@ public class Favoritos {
     }
 
     // toString
-
     @Override
     public String toString() {
-        return "Favoritos [emailUsuario=" + emailUsuario + ", idEvento=" + idEvento + "]";
+        return "Favorito del usuario " + emailUsuario + "\nEvento: " + idEvento;
     }
 
 }

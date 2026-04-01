@@ -9,91 +9,82 @@ import com.happinesssco.utilidad.Mensajes;
 
 public class UsuarioServicio {
 
-    // =====VALIDACIONES=====
-    public static boolean validacionUsuario(String usuario) {
-        if (!Validador.validadorVacio(usuario))
-            return false;
-        if (usuario.length() < 8) {
-            System.out.println(Mensajes.ERROR_LONGITUD);
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean validacionEmail(String email) {
-        if (!Validador.validadorVacio(email))
-            return false;
-        if (!email.contains("@")) {
-            System.out.println(Mensajes.ERROR_USUARIO_EMAIL_ARROBA);
-            return false;
-        }
-        if (!email.contains(".")) {
-            System.out.println(Mensajes.ERROR_USUARIO_EMAIL_PUNTO);
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean validacionPassword(String password) {
-        if (!Validador.validadorVacio(password))
-            return false;
-        if (password.length() < 8) {
-            System.out.println(Mensajes.ERROR_LONGITUD);
-            return false;
-        }
-        if (!password.matches(".*\\d.*")) {
-            System.out.println(Mensajes.ERROR_USUARIO_PASSWORD_NUMERO);
-            return false;
-        }
-        return true;
-    }
-
-    // =====OPERACIONES=====
+    /**
+     * Agrega un usuario al HashMap de usuarios. Primero pide al usuario que
+     * introduzca
+     * un nombre de usuario, un email y una contraseña. Luego comprueba que el email
+     * no existe. Si no existe, crea el usuario y lo añade al HashMap.
+     * 
+     * @param usuarios HashMap de usuarios
+     * @param sc       Scanner para entrada de datos por teclado
+     */
     public static void agregarUsuario(HashMap<String, Usuario> usuarios, Scanner sc) {
         System.out.println("\n=====Creación de usuario=====");
 
+        // Pide el nombre de usuario
         String nombre = Validador.pedirConIntentos(sc, "Introduce un nombre de usuario: ", "usuario");
         if (nombre == null) {
             System.out.println(Mensajes.ERROR_USUARIO_CREACION);
             return;
         }
 
+        // Pide el email
         String email = Validador.pedirConIntentos(sc, "Introduce un email: ", "email");
         if (email == null) {
             System.out.println(Mensajes.ERROR_USUARIO_CREACION);
             return;
         }
 
+        // Pide la contraseña
         String password = Validador.pedirConIntentos(sc, "Introduce una contraseña: ", "password");
         if (password == null) {
             System.out.println(Mensajes.ERROR_USUARIO_CREACION);
             return;
         }
 
+        // Comprueba si el email ya existe
         if (usuarios.containsKey(email)) {
             System.out.println(Mensajes.ERROR_USUARIO_YA_EXISTE);
             return;
         }
 
-        Usuario nuevo = new Usuario();
-        nuevo.setNombre(nombre);
-        nuevo.setEmail(email);
-        nuevo.setPassword(password);
+        // Objeto Usuario creado con los atributos solicitados.
+        Usuario nuevo = new Usuario(nombre, email, password);
+
+        // Se agrega el usuario al HashMap.
         usuarios.put(email, nuevo);
         System.out.println("Usuario creado correctamente.");
     }
 
+    /**
+     * Elimina un usuario del HashMap de usuarios. Primero muestra los usuarios
+     * existentes. Luego solicita al usuario que introduzca el email del usuario a
+     * eliminar. Misma lógica de validación que en agregarUsuario.
+     * 
+     * @param usuarios HashMap de usuarios
+     * @param sc       Scanner para entrada de datos por teclado
+     */
     public static void eliminarUsuario(HashMap<String, Usuario> usuarios, Scanner sc) {
-        System.out.print("Introduce el email del usuario a eliminar: ");
-        String email = sc.nextLine();
-        if (!usuarios.containsKey(email)) {
+
+        System.out.println("=====Eliminación de usuario=====");
+        // Muestra los usuarios
+        mostrarUsuarios(usuarios);
+        // Pide el email del usuario a eliminar
+        String emailAEliminar = Validador.pedirConIntentos(sc, "Introduce el email del usuario a eliminar: ",
+                "email");
+        if (emailAEliminar == null) {
             System.out.println(Mensajes.ERROR_USUARIO_NO_EXISTE);
             return;
         }
-        usuarios.remove(email);
+        usuarios.remove(emailAEliminar);
         System.out.println("Usuario eliminado correctamente.");
     }
 
+    /**
+     * Muestra el HashMap de usuarios
+     * 
+     * @param usuarios HashMap de usuarios
+     */
     public static void mostrarUsuarios(HashMap<String, Usuario> usuarios) {
         if (usuarios.isEmpty()) {
             System.out.println(Mensajes.ERROR_USUARIO_NO_HAY);

@@ -12,6 +12,16 @@ public class EventoServicio {
 
     private static int contadorIdEventos = 0;
 
+    /**
+     * Creación y agregación al Hashmap de Eventos de un nuevo Evento. Hace uso de
+     * distintos métodos de las clases de Servicio para
+     * validar las entradas del constructor (fecha, título, ubicación y
+     * descripción). El usuario tiene tres intentos para introducir
+     * cada uno de los parámetros. Si no, sale de la opción.
+     * 
+     * @param eventos HashMap de Eventos
+     * @param sc      Scanner para entrada de datos por teclado
+     */
     public static void agregarEvento(HashMap<Integer, Evento> eventos, Scanner sc) {
         System.out.println("=====Creación de evento=====");
 
@@ -40,19 +50,24 @@ public class EventoServicio {
         }
 
         contadorIdEventos++;
-        Evento nuevo = new Evento();
-        nuevo.setId(contadorIdEventos);
-        nuevo.setFecha(fecha);
-        nuevo.setTitulo(titulo);
-        nuevo.setUbicacion(ubicacion);
-        nuevo.setDescripcion(descripcion);
-        nuevo.setColeccionGalerias(new ArrayList<>());
+        // Objeto Evento creado con los atributos solicitados.
+        Evento eventoNuevo = new Evento(contadorIdEventos, fecha, titulo, ubicacion, descripcion);
+        // Se inicializa la colección de galerías.
+        eventoNuevo.setColeccionGalerias(new ArrayList<>());
 
-        eventos.put(nuevo.getId(), nuevo);
+        eventos.put(eventoNuevo.getId(), eventoNuevo);
         System.out.println("Evento creado correctamente.");
     }
 
+    /**
+     * Elimina un evento del HashMap de eventos. Misma lógica de validación que en
+     * agregarEvento.
+     * 
+     * @param eventos HashMap de eventos
+     * @param sc      Scanner para entrada de datos por teclado
+     */
     public static void eliminarEvento(HashMap<Integer, Evento> eventos, Scanner sc) {
+        System.out.println("=====Eliminación de evento=====");
         mostrarEventos(eventos);
         String idString = Validador.pedirConIntentos(sc, "Introduce el ID del evento a eliminar: ", "id");
         if (idString == null)
@@ -67,6 +82,12 @@ public class EventoServicio {
         System.out.println("Evento eliminado correctamente.");
     }
 
+    /**
+     * Muestra todos los eventos del HashMap de eventos. Si el HashMap está vacío,
+     * muestra un mensaje de error.
+     * 
+     * @param eventos HashMap de eventos
+     */
     public static void mostrarEventos(HashMap<Integer, Evento> eventos) {
         if (eventos.isEmpty()) {
             System.out.println(Mensajes.ERROR_EVENTO_NO_HAY);

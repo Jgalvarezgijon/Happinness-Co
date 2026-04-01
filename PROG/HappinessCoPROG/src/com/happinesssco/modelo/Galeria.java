@@ -1,12 +1,12 @@
 package com.happinesssco.modelo;
 
 public class Galeria {
+
     private int id;
     private String titulo;
     private int idEvento;
 
     // Getters y Setters
-
     public int getId() {
         return id;
     }
@@ -43,10 +43,9 @@ public class Galeria {
     }
 
     // toString
-
     @Override
     public String toString() {
-        return "Galerias [id=" + id + ", titulo=" + titulo + ", idEvento=" + idEvento + "]";
+        return "Galeria con ID " + id + "\nTítulo: " + titulo + "\nID del Evento: " + idEvento;
     }
 
 }

@@ -19,12 +19,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         // =====Listas instanciadas=====
-        // Usuarios
-        HashMap<String, Usuario> usuarios = new HashMap<>();
-        // Eventos
-        HashMap<Integer, Evento> eventos = new HashMap<>();
-        // Favoritos
-        ArrayList<Favoritos> favoritos = new ArrayList<>();
+        HashMap<String, Usuario> usuarios = new HashMap<>(); // Usuarios
+        HashMap<Integer, Evento> eventos = new HashMap<>(); // Eventos
+        ArrayList<Favoritos> favoritos = new ArrayList<>(); // Favoritos
+
         int opcion = 0;
 
         do {
@@ -99,7 +97,15 @@ public class Main {
         sc.close();
     }
 
-    // Submenú de información
+    /**
+     * Muestra un submenú dentro del menú principal para mostrar la información de
+     * Usuarios, Eventos, y favoritos.
+     * 
+     * @param usuarios  HashMap de usuarios.
+     * @param eventos   HashMap de eventos.
+     * @param favoritos ArrayList de favoritos.
+     * @param sc        Scanner para entrada de datos por teclado.
+     */
     private static void mostrarMenuInfo(HashMap<String, Usuario> usuarios,
             HashMap<Integer, Evento> eventos,
             ArrayList<Favoritos> favoritos,
@@ -116,7 +122,7 @@ public class Main {
             System.out.print("Elige una opción: ");
 
             String inputSubMenu = sc.nextLine();
-            // Manejo de excepciones
+            // Manejo de excepciones de entrada de datos
             try {
                 opcionSubMenu = Integer.parseInt(inputSubMenu);
             } catch (NumberFormatException e) {
@@ -206,6 +212,7 @@ public class Main {
  * validación de email az@az.az
  * Contraseñas más robustas (con Mayúsculas)
  * Validador vacío repetido en dos clases. Borrado en usuarioServicio.
- * 
+ * HACER JAVADOC
+ * Movidos validadores de usuario a la clase Validador.
  * 
  */
