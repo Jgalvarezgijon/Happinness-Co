@@ -52,8 +52,6 @@ public class EventoServicio {
         contadorIdEventos++;
         // Objeto Evento creado con los atributos solicitados.
         Evento eventoNuevo = new Evento(contadorIdEventos, fecha, titulo, ubicacion, descripcion);
-        // Se inicializa la colección de galerías.
-        eventoNuevo.setColeccionGalerias(new ArrayList<>());
 
         eventos.put(eventoNuevo.getId(), eventoNuevo);
         System.out.println("Evento creado correctamente.");
