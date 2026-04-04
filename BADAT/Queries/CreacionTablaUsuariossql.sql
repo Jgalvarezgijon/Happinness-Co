@@ -1,4 +1,4 @@
-USE HappinessCO;
+USE HappinessCo;
 
 CREATE TABLE usuarios(
 	id INT IDENTITY(1,1),
