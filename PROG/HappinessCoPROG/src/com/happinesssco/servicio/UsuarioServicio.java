@@ -72,7 +72,7 @@ public class UsuarioServicio {
         // Pide el email del usuario a eliminar
         String emailAEliminar = Validador.pedirConIntentos(sc, "Introduce el email del usuario a eliminar: ",
                 "email");
-        if (emailAEliminar == null) {
+        if (!usuarios.containsKey(emailAEliminar) || emailAEliminar == null) {
             System.out.println(Mensajes.ERROR_USUARIO_NO_EXISTE);
             return;
         }

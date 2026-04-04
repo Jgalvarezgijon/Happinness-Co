@@ -68,15 +68,11 @@ public class EventoServicio {
         System.out.println("=====Eliminación de evento=====");
         mostrarEventos(eventos);
         String idString = Validador.pedirConIntentos(sc, "Introduce el ID del evento a eliminar: ", "id");
-        if (idString == null)
-            return;
-
-        int id = Integer.parseInt(idString);
-        if (!eventos.containsKey(id)) {
+        if (!eventos.containsKey(Integer.parseInt(idString)) || idString == null) {
             System.out.println(Mensajes.ERROR_EVENTO_NO_EXISTE);
             return;
         }
-        eventos.remove(id);
+        eventos.remove(Integer.parseInt(idString));
         System.out.println("Evento eliminado correctamente.");
     }
 
