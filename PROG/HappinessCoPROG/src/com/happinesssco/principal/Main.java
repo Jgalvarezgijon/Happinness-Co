@@ -9,7 +9,7 @@ import com.happinesssco.servicio.FavoritoServicio;
 import com.happinesssco.servicio.GaleriaServicio;
 import com.happinesssco.servicio.UsuarioServicio;
 import com.happinesssco.modelo.Evento;
-import com.happinesssco.modelo.Favoritos;
+import com.happinesssco.modelo.Favorito;
 import com.happinesssco.modelo.Usuario;
 import com.happinesssco.utilidad.Mensajes;
 
@@ -21,7 +21,7 @@ public class Main {
         // =====Listas instanciadas=====
         HashMap<String, Usuario> usuarios = new HashMap<>(); // Usuarios
         HashMap<Integer, Evento> eventos = new HashMap<>(); // Eventos
-        ArrayList<Favoritos> favoritos = new ArrayList<>(); // Favoritos
+        ArrayList<Favorito> favoritos = new ArrayList<>(); // Favoritos
 
         int opcion = 0;
 
@@ -108,7 +108,7 @@ public class Main {
      */
     private static void mostrarMenuInfo(HashMap<String, Usuario> usuarios,
             HashMap<Integer, Evento> eventos,
-            ArrayList<Favoritos> favoritos,
+            ArrayList<Favorito> favoritos,
             Scanner sc) {
 
         int opcionSubMenu = 0;
