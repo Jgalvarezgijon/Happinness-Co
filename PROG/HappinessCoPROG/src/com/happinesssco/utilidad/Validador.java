@@ -72,8 +72,8 @@ public class Validador {
      * @return Valor validado
      */
     public static String pedirConIntentos(Scanner sc, String mensaje, String tipo) {
-        int intentos = 0;
-        while (intentos < MAX_INTENTOS) {
+
+        for (int intentos = 0; intentos < MAX_INTENTOS; intentos++) {
             System.out.print(mensaje);
             String entrada = sc.nextLine();
 
