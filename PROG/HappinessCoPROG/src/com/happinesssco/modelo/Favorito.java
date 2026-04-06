@@ -1,6 +1,6 @@
 package com.happinesssco.modelo;
 
-public class Favoritos {
+public class Favorito {
 
     private String emailUsuario;
     private int idEvento;
@@ -23,11 +23,11 @@ public class Favoritos {
     }
 
     // Constructor vacío
-    public Favoritos() {
+    public Favorito() {
     }
 
     // Constructor con parámetros
-    public Favoritos(String emailUsuario, int idEvento) {
+    public Favorito(String emailUsuario, int idEvento) {
         this.emailUsuario = emailUsuario;
         this.idEvento = idEvento;
     }

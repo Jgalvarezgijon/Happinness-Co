@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import com.happinesssco.modelo.Evento;
-import com.happinesssco.modelo.Favoritos;
+import com.happinesssco.modelo.Favorito;
 import com.happinesssco.modelo.Usuario;
 import com.happinesssco.utilidad.Mensajes;
 import com.happinesssco.utilidad.Validador;
@@ -22,7 +22,7 @@ public class FavoritoServicio {
      * @param usuarios  HashMap de usuarios
      * @param sc        Scanner para entrada de datos por teclado
      */
-    public static void crearFavorito(ArrayList<Favoritos> favoritos,
+    public static void crearFavorito(ArrayList<Favorito> favoritos,
             HashMap<Integer, Evento> eventos,
             HashMap<String, Usuario> usuarios, Scanner sc) {
 
@@ -51,7 +51,7 @@ public class FavoritoServicio {
         }
 
         // Comprueba si el favorito ya existe
-        for (Favoritos fav : favoritos) {
+        for (Favorito fav : favoritos) {
             if (fav.getEmailUsuario().equals(email) && fav.getIdEvento() == idEvento) {
                 System.out.println(Mensajes.ERROR_FAVORITO_YA_EXISTE);
                 return;
@@ -59,7 +59,7 @@ public class FavoritoServicio {
         }
 
         // Crea el favorito
-        Favoritos nuevoFavorito = new Favoritos(email, idEvento);
+        Favorito nuevoFavorito = new Favorito(email, idEvento);
         favoritos.add(nuevoFavorito);
         System.out.println("Favorito creado correctamente.");
     }
@@ -74,7 +74,7 @@ public class FavoritoServicio {
      * @param usuarios  HashMap de usuarios
      * @param sc        Scanner para entrada de datos por teclado
      */
-    public static void eliminarFavorito(ArrayList<Favoritos> favoritos,
+    public static void eliminarFavorito(ArrayList<Favorito> favoritos,
             HashMap<Integer, Evento> eventos,
             HashMap<String, Usuario> usuarios, Scanner sc) {
 
@@ -98,8 +98,8 @@ public class FavoritoServicio {
 
         // Busca el favorito en el ArrayList iterando. Si coincide con el email y el
         // idEvento, lo guarda en la variable aEliminar
-        Favoritos aEliminar = null;
-        for (Favoritos fav : favoritos) {
+        Favorito aEliminar = null;
+        for (Favorito fav : favoritos) {
             if (fav.getEmailUsuario().equals(email) && fav.getIdEvento() == idEvento) {
                 aEliminar = fav;
                 break;
@@ -121,13 +121,13 @@ public class FavoritoServicio {
      * 
      * @param favoritos ArrayList de favoritos
      */
-    public static void mostrarFavoritos(ArrayList<Favoritos> favoritos) {
+    public static void mostrarFavoritos(ArrayList<Favorito> favoritos) {
         if (favoritos.isEmpty()) {
             System.out.println(Mensajes.ERROR_FAVORITO_NO_HAY);
             return;
         }
         System.out.println("\n=====Lista de favoritos=====");
-        for (Favoritos f : favoritos) {
+        for (Favorito f : favoritos) {
             System.out.println(f);
         }
     }

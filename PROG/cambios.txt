@@ -1,0 +1,65 @@
+/ Creación de clases con atributos privados, getter, setter toString y
+// constructores.
+// Estructura mínima de clases con atributos
+// Estructura de menú interactivo con bucle while.
+/*
+ * Metodos:
+ * crearusuario
+ * validacion usuario
+ * validacion email
+ * validacion password.
+ * contador de intentos fallidos. En cada apartado de validación, de manera
+ * general.
+ * problemas con bucles while y contadores. (Revisar)
+ * un bucle while para cada apartado de validación en crearUsuario.
+ * REFACTORIZACIón: métodos validar entradas (para cada uno), métodos para PEDIR
+ * cada apartado
+ * Otro método para crear el usuario.
+ * Añadido el HashMap para almacenar los usuarios. con validación de existencia
+ * Métodos para crear eventos. Necesario validadores globales. Cambios
+ * generales.
+ * Método reutilizable para validar entradas vacías (Se repite mucho).
+ * Modular y reutilizable.
+ * Los campos del constructor de eventos no necesitan mucha validación.
+ * Metodo validador de 3 intentos con switch para cada situación. Se introduce
+ * el menasaje como parámetro y devuelve la entrada. Método reutilizable para
+ * refactorizar.
+ * Refactorizar el código en pedir$Metodo, elimino los metodos de pedir
+ * nombnre,string, etc.
+ * If de error en un método propio.
+ * borro metodo intentoFallido, ya que el metodo pedirConIntentos devuelve null
+ * si hay error.
+ * AÑADIR A LOS Métodos de creacion el manejo de NULL.
+ * Nuevo metodo para AGREGAR usuario al HashMap Para que tome como parámetro
+ * asdemás
+ * el HashMap de usuarios.
+ * Nuevo método para ELIMINAR usuario del HashMap.
+ * Creacion de agregar evento.
+ * Diferenciasr entre agregar (al hashmap) y crear/añadir (el objeto)
+ * validarEntrada
+ *
+ * Mejorar los toString
+ * EN mostrar usuarios no mostrar las contraseñas
+ * agregar usuario + crear usuario, etc.
+ * Si no hay usuarios no deberia mostrarse opciones de eliminar favvoritos ni
+ * galerias.
+ * Agregar otro submenu: MOstrar info de eventos, usuarios, etc.
+ *
+ * InputMissmatch Exception con las opciones del menú. Cambiar a try catch con
+ * un String como input --> Integer.parseInt();
+ * Crear clases de servicio para cada objeto. Mayor limpieza en el código
+ * Paso los contadores globales a privados.
+ * manejo de errores en el submenú
+ * creo clase validador a parte
+ * Limpio el main
+ * Pedir repaso a la IA
+ * Organiación en distintos paquetes + arreglar los imports.
+ * Posibles mejoras:
+ * Validación de fecha,
+ * validación de email az@az.az
+ * Contraseñas más robustas (con Mayúsculas)
+ * Validador vacío repetido en dos clases. Borrado en usuarioServicio.
+ * HACER JAVADOC
+ * Movidos validadores de usuario a la clase Validador.
+ * 
+ */
