@@ -1,7 +1,7 @@
 tailwind.config = {
     theme: {
         extend: {
-            /* Colores guardados para su uso a lo largo del proyecto */
+            /*Colores guardados para su uso a lo largo del proyecto*/
             colors: {
                 corporativo: '#ba007c',
                 musica: '#ba007c',
@@ -15,14 +15,14 @@ tailwind.config = {
                 archistry: ['"Ar Chistry"', 'sans-serif'],
             },
             keyframes: {
-                /* Efecto visual para el símbolo & del logotipo.
+                /*Efecto visual para el símbolo & del logotipo.
                 El caracter alterna su opacidad entre los 4 colores corporativos propuestos
                 Cada 8 segundos, el símbolo & hace una rotación de color completa*/
                 ampColor: {
-                    '0%':   { color: '#009bdb' },
-                    '25%':  { color: '#ba007c' },
-                    '50%':  { color: '#555555' },
-                    '75%':  { color: '#ff7b00' },
+                    '0%': { color: '#009bdb' },
+                    '25%': { color: '#ba007c' },
+                    '50%': { color: '#555555' },
+                    '75%': { color: '#ff7b00' },
                     '100%': { color: '#009bdb' },
                 }
             },
