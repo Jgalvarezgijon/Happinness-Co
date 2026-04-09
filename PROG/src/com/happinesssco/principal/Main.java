@@ -1,0 +1,152 @@
+package com.happinesssco.principal;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+import com.happinesssco.servicio.EventoServicio;
+import com.happinesssco.servicio.FavoritoServicio;
+import com.happinesssco.servicio.GaleriaServicio;
+import com.happinesssco.servicio.UsuarioServicio;
+import com.happinesssco.modelo.Evento;
+import com.happinesssco.modelo.Favorito;
+import com.happinesssco.modelo.Usuario;
+import com.happinesssco.utilidad.Mensajes;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // =====Listas instanciadas=====
+        HashMap<String, Usuario> usuarios = new HashMap<>(); // Usuarios
+        HashMap<Integer, Evento> eventos = new HashMap<>(); // Eventos
+        ArrayList<Favorito> favoritos = new ArrayList<>(); // Favoritos
+
+        int opcion = 0;
+
+        do {
+            System.out.println("\n=====MENÚ PRINCIPAL=====");
+            System.out.println("1. Añadir usuario.");
+            System.out.println("2. Eliminar usuario.");
+            System.out.println("3. Añadir evento.");
+            System.out.println("4. Eliminar evento.");
+            System.out.println("5. Añadir galería.");
+            System.out.println("6. Eliminar galería.");
+            System.out.println("7. Añadir favorito.");
+            System.out.println("8. Eliminar favorito.");
+            System.out.println("9. Mostrar información.");
+            System.out.println("10. Salir.");
+            System.out.print("\nElige una opción: ");
+
+            String input = sc.nextLine();
+            // Manejo de excepciones
+            try {
+                opcion = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("\n" + Mensajes.ERROR_MENU_INPUT);
+                continue;
+            }
+
+            switch (opcion) {
+                case 1:
+                    // Añadir usuario
+                    UsuarioServicio.agregarUsuario(usuarios, sc);
+                    break;
+                case 2:
+                    // Eliminar usuario
+                    UsuarioServicio.eliminarUsuario(usuarios, sc);
+                    break;
+                case 3:
+                    // Añadir evento
+                    EventoServicio.agregarEvento(eventos, sc);
+                    break;
+                case 4:
+                    // Eliminar evento
+                    EventoServicio.eliminarEvento(eventos, sc);
+                    break;
+                case 5:
+                    // Añadir Galería
+                    GaleriaServicio.agregarGaleria(eventos, sc);
+                    break;
+                case 6:
+                    // Eliminar Galería
+                    GaleriaServicio.eliminarGaleria(eventos, sc);
+                    break;
+                case 7:
+                    // Añadir favorito
+                    FavoritoServicio.crearFavorito(favoritos, eventos, usuarios, sc);
+                    break;
+                case 8:
+                    // Eliminar favorito
+                    FavoritoServicio.eliminarFavorito(favoritos, eventos, usuarios, sc);
+                    break;
+                case 9:
+                    // Información en pantalla
+                    mostrarMenuInfo(usuarios, eventos, favoritos, sc);
+                    break;
+                case 10:
+                    System.out.println("\nSaliendo del programa...");
+                    break;
+                default:
+                    System.out.println("\n" + Mensajes.ERROR_MENU_OPCION);
+                    break;
+            }
+        } while (opcion != 10);
+
+        sc.close();
+    }
+
+    /**
+     * Muestra un submenú dentro del menú principal para mostrar la información de
+     * Usuarios, Eventos, y favoritos.
+     * 
+     * @param usuarios  HashMap de usuarios.
+     * @param eventos   HashMap de eventos.
+     * @param favoritos ArrayList de favoritos.
+     * @param sc        Scanner para entrada de datos por teclado.
+     */
+    private static void mostrarMenuInfo(HashMap<String, Usuario> usuarios,
+            HashMap<Integer, Evento> eventos,
+            ArrayList<Favorito> favoritos,
+            Scanner sc) {
+
+        int opcionSubMenu = 0;
+
+        do {
+            System.out.println("\n=====INFORMACIÓN EN PANTALLA=====");
+            System.out.println("1. Mostrar usuarios.");
+            System.out.println("2. Mostrar eventos.");
+            System.out.println("3. Mostrar favoritos.");
+            System.out.println("4. Salir.");
+            System.out.print("\nElige una opción: ");
+
+            String inputSubMenu = sc.nextLine();
+            // Manejo de excepciones de entrada de datos
+            try {
+                opcionSubMenu = Integer.parseInt(inputSubMenu);
+            } catch (NumberFormatException e) {
+                System.out.println("\n" + Mensajes.ERROR_MENU_INPUT);
+                continue;
+            }
+
+            switch (opcionSubMenu) {
+                case 1:
+                    UsuarioServicio.mostrarUsuarios(usuarios);
+                    break;
+                case 2:
+                    EventoServicio.mostrarEventos(eventos);
+                    break;
+                case 3:
+                    FavoritoServicio.mostrarFavoritos(favoritos, eventos);
+                    break;
+                case 4:
+                    System.out.println("\nSaliendo del submenú...");
+                    break;
+                default:
+                    System.out.println("\n" + Mensajes.ERROR_MENU_OPCION);
+                    break;
+            }
+        } while (opcionSubMenu != 4);
+    }
+}
