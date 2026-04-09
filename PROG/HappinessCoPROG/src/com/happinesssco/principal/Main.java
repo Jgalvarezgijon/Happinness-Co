@@ -130,7 +130,7 @@ public class Main {
             System.out.println("2. Mostrar eventos.");
             System.out.println("3. Mostrar favoritos.");
             System.out.println("4. Salir.");
-            System.out.print("Elige una opción: ");
+            System.out.print("\nElige una opción: ");
 
             String inputSubMenu = sc.nextLine();
             // Manejo de excepciones de entrada de datos

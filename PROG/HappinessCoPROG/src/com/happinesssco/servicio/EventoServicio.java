@@ -22,27 +22,27 @@ public class EventoServicio {
      * @param sc      Scanner para entrada de datos por teclado
      */
     public static void agregarEvento(HashMap<Integer, Evento> eventos, Scanner sc) {
-        System.out.println("=====Creación de evento=====");
+        System.out.println("\n=====Creación de evento=====");
 
-        String fecha = Validador.pedirConIntentos(sc, "Introduce la fecha del evento (dd/mm/aaaa): ", "fecha");
+        String fecha = Validador.pedirConIntentos(sc, "\nIntroduce la fecha del evento (dd/mm/aaaa): ", "fecha");
         if (fecha == null) {
             System.out.println(Mensajes.ERROR_EVENTO_CREACION);
             return;
         }
 
-        String titulo = Validador.pedirConIntentos(sc, "Introduce el título del evento: ", "generico");
+        String titulo = Validador.pedirConIntentos(sc, "Introduce el título del evento: ", "texto");
         if (titulo == null) {
             System.out.println(Mensajes.ERROR_EVENTO_CREACION);
             return;
         }
 
-        String ubicacion = Validador.pedirConIntentos(sc, "Introduce la ubicación del evento: ", "generico");
+        String ubicacion = Validador.pedirConIntentos(sc, "Introduce la ubicación del evento: ", "texto");
         if (ubicacion == null) {
             System.out.println(Mensajes.ERROR_EVENTO_CREACION);
             return;
         }
 
-        String descripcion = Validador.pedirConIntentos(sc, "Introduce la descripción del evento: ", "generico");
+        String descripcion = Validador.pedirConIntentos(sc, "Introduce la descripción del evento: ", "texto");
         if (descripcion == null) {
             System.out.println(Mensajes.ERROR_EVENTO_CREACION);
             return;

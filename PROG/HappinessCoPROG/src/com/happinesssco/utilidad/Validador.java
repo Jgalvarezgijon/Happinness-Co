@@ -108,6 +108,9 @@ public class Validador {
             case "id":
                 valido = validadorId(entrada);
                 break;
+            case "texto":
+                valido = validadorTexto(entrada);
+                break;
             case "generico":
                 valido = validadorVacio(entrada);
                 break;
@@ -116,6 +119,22 @@ public class Validador {
                 break;
         }
         return valido;
+    }
+
+    /**
+     * Valida que el String no esté vacío y contenga solo letras y espacios
+     * 
+     * @param texto String a validar
+     * @return true si es válido, false si no lo es
+     */
+    public static boolean validadorTexto(String texto) {
+        if (!validadorVacio(texto)) {
+            return false;
+        }
+        if (texto.matches("^[a-zA-Z\\s]+$")) {
+            return true;
+        }
+        return false;
     }
 
     /**

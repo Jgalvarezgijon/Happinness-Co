@@ -19,7 +19,7 @@ public class UsuarioServicio {
      * @param sc       Scanner para entrada de datos por teclado
      */
     public static void agregarUsuario(HashMap<String, Usuario> usuarios, Scanner sc) {
-        System.out.println("\n=====Creación de usuario=====");
+        System.out.println("\n=====Creación de usuario=====\n");
 
         // Pide el nombre de usuario
         String nombre = Validador.pedirConIntentos(sc, "Introduce un nombre de usuario: ", "usuario");
@@ -66,11 +66,11 @@ public class UsuarioServicio {
      */
     public static void eliminarUsuario(HashMap<String, Usuario> usuarios, Scanner sc) {
 
-        System.out.println("\n=====Eliminación de usuario=====\n");
+        System.out.println("\n=====Eliminación de usuario=====");
         // Muestra los usuarios
         mostrarUsuarios(usuarios);
         for (int intentos = 0; intentos < Validador.MAX_INTENTOS; intentos++) {
-            System.out.print("Introduce el email del usuario a eliminar: ");
+            System.out.print("\nIntroduce el email del usuario a eliminar: ");
             String emailAEliminar = sc.nextLine();
 
             // 1. Validamos formato primero
