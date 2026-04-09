@@ -11,7 +11,7 @@ public class Mensajes {
 
     // USUARIO
     public static final String ERROR_USUARIO_CREACION = "Error. No se ha podido crear el usuario.";
-    public static final String ERROR_USUARIO_YA_EXISTE = "Error . El usuario ya existe.";
+    public static final String ERROR_USUARIO_YA_EXISTE = "Error. El usuario ya existe.";
     public static final String ERROR_USUARIO_NO_EXISTE = "Error. El usuario no existe.";
     public static final String ERROR_USUARIO_NO_HAY = "Error. No hay usuarios para mostrar.";
 
@@ -22,13 +22,12 @@ public class Mensajes {
 
     // EVENTO
     public static final String ERROR_EVENTO_CREACION = "Error. No se ha podido crear el evento.";
-    public static final String ERROR_EVENTO_YA_EXISTE = "Error . El evento ya existe.";
+    public static final String ERROR_EVENTO_YA_EXISTE = "Error. El evento ya existe.";
     public static final String ERROR_EVENTO_NO_EXISTE = "Error. El evento no existe.";
     public static final String ERROR_EVENTO_NO_HAY = "Error. No hay eventos para mostrar.";
 
     // EVENTO_CAMPOS
     public static final String ERROR_EVENTO_FECHA_INVALIDA = "Error. La fecha no es válida.";
-    public static final String ERROR_EVENTO_PRECIO_NEGATIVO = "Error. El precio no puede ser negativo.";
     public static final String ERROR_EVENTO_EXISTE = "Error. El evento ya existe.";
 
     // FAVORITOS

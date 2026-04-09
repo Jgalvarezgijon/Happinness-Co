@@ -65,27 +65,20 @@ public class UsuarioServicio {
      * @param sc       Scanner para entrada de datos por teclado
      */
     public static void eliminarUsuario(HashMap<String, Usuario> usuarios, Scanner sc) {
-
         System.out.println("\n=====Eliminación de usuario=====");
-        // Muestra los usuarios
+        if (usuarios.isEmpty()) {
+            System.out.println(Mensajes.ERROR_USUARIO_NO_HAY);
+            return;
+        }
         mostrarUsuarios(usuarios);
-        for (int intentos = 0; intentos < Validador.MAX_INTENTOS; intentos++) {
-            System.out.print("\nIntroduce el email del usuario a eliminar: ");
-            String emailAEliminar = sc.nextLine();
-
-            // 1. Validamos formato primero
-            if (Validador.validarEntrada(emailAEliminar, "generico")) {
-                // 2. Validamos existencia después
-                if (usuarios.containsKey(emailAEliminar)) {
-                    usuarios.remove(emailAEliminar);
-                    System.out.println("\n=====Usuario eliminado correctamente=====\n");
-                    return;
-                } else {
-                    System.out.println(Mensajes.ERROR_USUARIO_NO_EXISTE);
-                }
+        String email = Validador.pedirConIntentos(sc, "\nIntroduce el email del usuario a eliminar: ", "email");
+        if (email != null) {
+            if (usuarios.remove(email) != null) {
+                System.out.println("\n=====Usuario eliminado correctamente=====\n");
+            } else {
+                System.out.println(Mensajes.ERROR_USUARIO_NO_EXISTE);
             }
         }
-        System.out.println(Mensajes.ERROR_MAX_INTENTOS);
     }
 
     /**

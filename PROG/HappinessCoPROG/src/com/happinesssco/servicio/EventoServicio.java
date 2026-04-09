@@ -23,25 +23,25 @@ public class EventoServicio {
      */
     public static void agregarEvento(HashMap<Integer, Evento> eventos, Scanner sc) {
         System.out.println("\n=====Creación de evento=====");
-
+        // Fecha
         String fecha = Validador.pedirConIntentos(sc, "\nIntroduce la fecha del evento (dd/mm/aaaa): ", "fecha");
         if (fecha == null) {
             System.out.println(Mensajes.ERROR_EVENTO_CREACION);
             return;
         }
-
+        // Título
         String titulo = Validador.pedirConIntentos(sc, "Introduce el título del evento: ", "texto");
         if (titulo == null) {
             System.out.println(Mensajes.ERROR_EVENTO_CREACION);
             return;
         }
-
+        // Ubicación
         String ubicacion = Validador.pedirConIntentos(sc, "Introduce la ubicación del evento: ", "texto");
         if (ubicacion == null) {
             System.out.println(Mensajes.ERROR_EVENTO_CREACION);
             return;
         }
-
+        // Descripción
         String descripcion = Validador.pedirConIntentos(sc, "Introduce la descripción del evento: ", "texto");
         if (descripcion == null) {
             System.out.println(Mensajes.ERROR_EVENTO_CREACION);
@@ -59,7 +59,7 @@ public class EventoServicio {
         contadorIdEventos++;
         // Objeto Evento creado con los atributos solicitados.
         Evento eventoNuevo = new Evento(contadorIdEventos, fecha, titulo, ubicacion, descripcion);
-
+        // Añadido al HashMap
         eventos.put(eventoNuevo.getId(), eventoNuevo);
         System.out.println("\n=====Evento creado correctamente=====\n");
     }
@@ -78,24 +78,15 @@ public class EventoServicio {
             return;
         }
         mostrarEventos(eventos);
-        for (int intentos = 0; intentos < Validador.MAX_INTENTOS; intentos++) {
-            System.out.print("Introduce el ID del evento a eliminar: ");
-            String idString = sc.nextLine();
-
-            // 1. Validamos formato primero
-            if (Validador.validarEntrada(idString, "id")) {
-                int id = Integer.parseInt(idString);
-                // 2. Validamos existencia después
-                if (eventos.containsKey(id)) {
-                    eventos.remove(id);
-                    System.out.println("\n=====Evento eliminado correctamente=====\n");
-                    return;
-                } else {
-                    System.out.println(Mensajes.ERROR_EVENTO_NO_EXISTE);
-                }
+        String idStr = Validador.pedirConIntentos(sc, "Introduce el ID del evento a eliminar: ", "id");
+        if (idStr != null) {
+            int id = Integer.parseInt(idStr);
+            if (eventos.remove(id) != null) {
+                System.out.println("\n=====Evento eliminado correctamente=====\n");
+            } else {
+                System.out.println(Mensajes.ERROR_EVENTO_NO_EXISTE);
             }
         }
-        System.out.println(Mensajes.ERROR_MAX_INTENTOS);
     }
 
     /**

@@ -24,16 +24,6 @@ public class Main {
         HashMap<Integer, Evento> eventos = new HashMap<>(); // Eventos
         ArrayList<Favorito> favoritos = new ArrayList<>(); // Favoritos
 
-        Usuario usuario1 = new Usuario("usuario111", "email@email.com", "contraseña1");
-        Evento evento1 = new Evento(1, "01/01/1990", "TituloEvento", "UbicacionEvento", "DescripcionEvento");
-        Favorito favorito1 = new Favorito(usuario1.getEmail(), evento1.getId());
-        Galeria galeria1 = new Galeria(1, "TituloGaleria", evento1.getId());
-
-        usuarios.put(usuario1.getEmail(), usuario1);
-        eventos.put(evento1.getId(), evento1);
-        favoritos.add(favorito1);
-        evento1.agregarGaleria(galeria1);
-
         int opcion = 0;
 
         do {

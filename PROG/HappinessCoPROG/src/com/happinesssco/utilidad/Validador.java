@@ -23,7 +23,7 @@ public class Validador {
     }
 
     /**
-     * Valida que el email no esté vacío y contenga @ y .
+     * Valida que el email no esté vacío y contenga "@" y "."
      * 
      * @param email String a validar
      * @return true si es válido, false si no lo es
@@ -31,12 +31,8 @@ public class Validador {
     public static boolean validacionEmail(String email) {
         if (!Validador.validadorVacio(email))
             return false;
-        if (!email.contains("@")) {
-            System.out.println(Mensajes.ERROR_USUARIO_EMAIL_ARROBA);
-            return false;
-        }
-        if (!email.contains(".")) {
-            System.out.println(Mensajes.ERROR_USUARIO_EMAIL_PUNTO);
+        if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
+            System.out.println("Error. Formato de email inválido.");
             return false;
         }
         return true;
@@ -116,7 +112,7 @@ public class Validador {
                 break;
             default:
                 System.out.println("Error. Tipo de validación no reconocido.");
-                break;
+                return false;
         }
         return valido;
     }
@@ -131,7 +127,8 @@ public class Validador {
         if (!validadorVacio(texto)) {
             return false;
         }
-        if (texto.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
+        // Permitir letras, números, espacios y algunos signos de puntuación básicos
+        if (texto.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\\s.,!?¡¿]+$")) {
             return true;
         }
         System.out.println(Mensajes.ERROR_TEXTO_INVALIDO);
