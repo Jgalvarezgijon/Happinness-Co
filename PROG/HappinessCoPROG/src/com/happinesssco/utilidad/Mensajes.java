@@ -7,6 +7,7 @@ public class Mensajes {
     public static final String ERROR_LONGITUD = "Error. La longitud debe ser de al menos 8 caracteres.";
     public static final String ERROR_CAMPO_VACIO = "Error. Este campo no puede estar vacío.";
     public static final String ERROR_MAX_INTENTOS = "Error. Número máximo de intentos alcanzado.";
+    public static final String ERROR_TEXTO_INVALIDO = "Error. El texto introducido no es válido.";
 
     // USUARIO
     public static final String ERROR_USUARIO_CREACION = "Error. No se ha podido crear el usuario.";

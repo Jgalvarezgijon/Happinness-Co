@@ -48,6 +48,14 @@ public class EventoServicio {
             return;
         }
 
+        // Comprobación de si el evento ya existe (por título)
+        for (Evento e : eventos.values()) {
+            if (e.getTitulo().equalsIgnoreCase(titulo)) {
+                System.out.println(Mensajes.ERROR_EVENTO_YA_EXISTE);
+                return;
+            }
+        }
+
         contadorIdEventos++;
         // Objeto Evento creado con los atributos solicitados.
         Evento eventoNuevo = new Evento(contadorIdEventos, fecha, titulo, ubicacion, descripcion);
@@ -65,6 +73,10 @@ public class EventoServicio {
      */
     public static void eliminarEvento(HashMap<Integer, Evento> eventos, Scanner sc) {
         System.out.println("\n=====Eliminación de evento=====\n");
+        if (eventos.isEmpty()) {
+            System.out.println(Mensajes.ERROR_EVENTO_NO_HAY);
+            return;
+        }
         mostrarEventos(eventos);
         for (int intentos = 0; intentos < Validador.MAX_INTENTOS; intentos++) {
             System.out.print("Introduce el ID del evento a eliminar: ");

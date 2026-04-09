@@ -79,7 +79,7 @@ public class Validador {
                 return entrada;
             }
         }
-        System.out.println("Error. Se ha alcanzado el número máximo de intentos.");
+        System.out.println(Mensajes.ERROR_MAX_INTENTOS);
         return null;
     }
 
@@ -131,9 +131,10 @@ public class Validador {
         if (!validadorVacio(texto)) {
             return false;
         }
-        if (texto.matches("^[a-zA-Z\\s]+$")) {
+        if (texto.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
             return true;
         }
+        System.out.println(Mensajes.ERROR_TEXTO_INVALIDO);
         return false;
     }
 
@@ -144,7 +145,7 @@ public class Validador {
      * @return true si es válido, false si no lo es
      */
     public static boolean validadorVacio(String entrada) {
-        if (entrada.isEmpty()) {
+        if (entrada == null || entrada.trim().isEmpty()) {
             System.out.println(Mensajes.ERROR_CAMPO_VACIO);
             return false;
         }
