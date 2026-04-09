@@ -28,8 +28,18 @@ public class FavoritoServicio {
 
         System.out.println("\n=====Creación de favorito=====\n");
         // Muestra los eventos y el usuario elige uno
+
+        if (usuarios.isEmpty()) {
+            System.out.println(Mensajes.ERROR_USUARIO_NO_HAY);
+            return;
+        }
+
+        if (eventos.isEmpty()) {
+            System.out.println(Mensajes.ERROR_EVENTO_NO_HAY);
+            return;
+        }
         EventoServicio.mostrarEventos(eventos);
-        String idEventoString = Validador.pedirConIntentos(sc, "Introduce el ID del evento: ", "id");
+        String idEventoString = Validador.pedirConIntentos(sc, "\nIntroduce el ID del evento: ", "id");
         if (idEventoString == null) {
             System.out.println(Mensajes.ERROR_CAMPO_VACIO);
             return;
@@ -43,7 +53,7 @@ public class FavoritoServicio {
 
         // Muestra los usuarios y el usuario elige uno
         UsuarioServicio.mostrarUsuarios(usuarios);
-        String email = Validador.pedirConIntentos(sc, "Introduce el email del usuario: ", "email");
+        String email = Validador.pedirConIntentos(sc, "\nIntroduce el email del usuario: ", "email");
         if (email == null) {
             System.out.println(Mensajes.ERROR_CAMPO_VACIO);
             return;
@@ -89,11 +99,11 @@ public class FavoritoServicio {
         }
         mostrarFavoritos(favoritos, eventos);
         // Email del usuario
-        String email = Validador.pedirConIntentos(sc, "Introduce el email del usuario: ", "email");
+        String email = Validador.pedirConIntentos(sc, "\nIntroduce el email del usuario: ", "email");
         if (email == null)
             return;
         // ID del evento
-        String idEventoStr = Validador.pedirConIntentos(sc, "Introduce el ID del evento: ", "id");
+        String idEventoStr = Validador.pedirConIntentos(sc, "\nIntroduce el ID del evento: ", "id");
         if (idEventoStr == null)
             return;
 

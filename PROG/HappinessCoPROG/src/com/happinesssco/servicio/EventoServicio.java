@@ -72,7 +72,7 @@ public class EventoServicio {
      * @param sc      Scanner para entrada de datos por teclado
      */
     public static void eliminarEvento(HashMap<Integer, Evento> eventos, Scanner sc) {
-        System.out.println("\n=====Eliminación de evento=====\n");
+        System.out.println("\n=====Eliminación de evento=====");
         if (eventos.isEmpty()) {
             System.out.println(Mensajes.ERROR_EVENTO_NO_HAY);
             return;

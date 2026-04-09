@@ -10,7 +10,6 @@ import com.happinesssco.servicio.GaleriaServicio;
 import com.happinesssco.servicio.UsuarioServicio;
 import com.happinesssco.modelo.Evento;
 import com.happinesssco.modelo.Favorito;
-import com.happinesssco.modelo.Galeria;
 import com.happinesssco.modelo.Usuario;
 import com.happinesssco.utilidad.Mensajes;
 
