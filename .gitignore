@@ -28,3 +28,6 @@ dist-ssr
 
 # Archivos comprimidos 
 *.zip
+
+#vscode
+.vscode/
