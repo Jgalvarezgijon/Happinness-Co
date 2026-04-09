@@ -149,7 +149,7 @@ public class Main {
                     EventoServicio.mostrarEventos(eventos);
                     break;
                 case 3:
-                    FavoritoServicio.mostrarFavoritos(favoritos);
+                    FavoritoServicio.mostrarFavoritos(favoritos, eventos);
                     break;
                 case 4:
                     System.out.println("\nSaliendo del submenú...");

@@ -102,4 +102,34 @@ public class EventoServicio {
             System.out.println(e);
         }
     }
+
+    /**
+     * Obtiene un evento por su ID
+     * 
+     * @param eventos HashMap de eventos
+     * @param id      ID del evento
+     * @return Evento con el ID especificado
+     */
+    public static Evento obtenerEventoPorId(HashMap<Integer, Evento> eventos, int id) {
+        if (eventos.containsKey(id)) {
+            return eventos.get(id);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Obtiene el título de un evento por su ID
+     * 
+     * @param eventos HashMap de eventos
+     * @param id      ID del evento
+     * @return Título del evento con el ID especificado
+     */
+    public static String obtenerTituloEventoPorId(HashMap<Integer, Evento> eventos, int id) {
+        if (eventos.containsKey(id)) {
+            return eventos.get(id).getTitulo();
+        } else {
+            return "Evento no encontrado";
+        }
+    }
 }

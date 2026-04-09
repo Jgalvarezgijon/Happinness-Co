@@ -88,6 +88,7 @@ public class FavoritoServicio {
             return;
         }
         // Muestra los favoritos
+        mostrarFavoritos(favoritos, eventos);
         for (int intentos = 0; intentos < Validador.MAX_INTENTOS; intentos++) {
             System.out.print("Introduce el email del usuario: ");
             String email = sc.nextLine();
@@ -122,18 +123,20 @@ public class FavoritoServicio {
     }
 
     /**
-     * Muestra el ArrayList de favoritos
+     * Muestra el ArrayList de favoritos, incluyendo el título del evento.
      * 
      * @param favoritos ArrayList de favoritos
+     * @param eventos   HashMap de eventos para obtener los títulos
      */
-    public static void mostrarFavoritos(ArrayList<Favorito> favoritos) {
+    public static void mostrarFavoritos(ArrayList<Favorito> favoritos, HashMap<Integer, Evento> eventos) {
         if (favoritos.isEmpty()) {
             System.out.println(Mensajes.ERROR_FAVORITO_NO_HAY);
             return;
         }
         System.out.println("\n=====Lista de favoritos=====\n");
         for (Favorito f : favoritos) {
-            System.out.println(f);
+            String titulo = EventoServicio.obtenerTituloEventoPorId(eventos, f.getIdEvento());
+            System.out.println(f + ": " + titulo);
         }
     }
 }
