@@ -53,7 +53,7 @@ public class UsuarioServicio {
 
         // Se agrega el usuario al HashMap.
         usuarios.put(email, nuevo);
-        System.out.println("Usuario creado correctamente.");
+        System.out.println("\n=====Usuario creado correctamente=====\n");
     }
 
     /**
@@ -66,18 +66,26 @@ public class UsuarioServicio {
      */
     public static void eliminarUsuario(HashMap<String, Usuario> usuarios, Scanner sc) {
 
-        System.out.println("=====Eliminación de usuario=====");
+        System.out.println("\n=====Eliminación de usuario=====\n");
         // Muestra los usuarios
         mostrarUsuarios(usuarios);
-        // Pide el email del usuario a eliminar
-        String emailAEliminar = Validador.pedirConIntentos(sc, "Introduce el email del usuario a eliminar: ",
-                "email");
-        if (!usuarios.containsKey(emailAEliminar) || emailAEliminar == null) {
-            System.out.println(Mensajes.ERROR_USUARIO_NO_EXISTE);
-            return;
+        for (int intentos = 0; intentos < Validador.MAX_INTENTOS; intentos++) {
+            System.out.print("Introduce el email del usuario a eliminar: ");
+            String emailAEliminar = sc.nextLine();
+
+            // 1. Validamos formato primero
+            if (Validador.validarEntrada(emailAEliminar, "generico")) {
+                // 2. Validamos existencia después
+                if (usuarios.containsKey(emailAEliminar)) {
+                    usuarios.remove(emailAEliminar);
+                    System.out.println("\n=====Usuario eliminado correctamente=====\n");
+                    return;
+                } else {
+                    System.out.println(Mensajes.ERROR_USUARIO_NO_EXISTE);
+                }
+            }
         }
-        usuarios.remove(emailAEliminar);
-        System.out.println("Usuario eliminado correctamente.");
+        System.out.println(Mensajes.ERROR_MAX_INTENTOS);
     }
 
     /**
@@ -90,7 +98,7 @@ public class UsuarioServicio {
             System.out.println(Mensajes.ERROR_USUARIO_NO_HAY);
             return;
         }
-        System.out.println("\n=====Lista de usuarios=====");
+        System.out.println("\n=====Lista de usuarios=====\n");
         for (Usuario u : usuarios.values()) {
             System.out.println(u);
         }

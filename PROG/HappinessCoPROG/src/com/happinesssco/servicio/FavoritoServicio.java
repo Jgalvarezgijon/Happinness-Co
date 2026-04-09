@@ -26,12 +26,14 @@ public class FavoritoServicio {
             HashMap<Integer, Evento> eventos,
             HashMap<String, Usuario> usuarios, Scanner sc) {
 
-        System.out.println("=====Creación de favorito=====");
+        System.out.println("\n=====Creación de favorito=====\n");
         // Muestra los eventos y el usuario elige uno
         EventoServicio.mostrarEventos(eventos);
         String idEventoString = Validador.pedirConIntentos(sc, "Introduce el ID del evento: ", "id");
-        if (idEventoString == null)
+        if (idEventoString == null) {
+            System.out.println(Mensajes.ERROR_CAMPO_VACIO);
             return;
+        }
 
         int idEvento = Integer.parseInt(idEventoString);
         if (!eventos.containsKey(idEvento)) {
@@ -42,9 +44,10 @@ public class FavoritoServicio {
         // Muestra los usuarios y el usuario elige uno
         UsuarioServicio.mostrarUsuarios(usuarios);
         String email = Validador.pedirConIntentos(sc, "Introduce el email del usuario: ", "email");
-        if (email == null)
+        if (email == null) {
+            System.out.println(Mensajes.ERROR_CAMPO_VACIO);
             return;
-
+        }
         if (!usuarios.containsKey(email)) {
             System.out.println(Mensajes.ERROR_USUARIO_NO_EXISTE);
             return;
@@ -61,7 +64,7 @@ public class FavoritoServicio {
         // Crea el favorito
         Favorito nuevoFavorito = new Favorito(email, idEvento);
         favoritos.add(nuevoFavorito);
-        System.out.println("Favorito creado correctamente.");
+        System.out.println("\n=====Favorito creado correctamente=====\n");
     }
 
     /**
@@ -78,42 +81,44 @@ public class FavoritoServicio {
             HashMap<Integer, Evento> eventos,
             HashMap<String, Usuario> usuarios, Scanner sc) {
 
-        System.out.println("=====Eliminación de favorito=====");
+        System.out.println("\n=====Eliminación de favorito=====\n");
         // Comprueba que favoritos no esté vacío
         if (favoritos.isEmpty()) {
             System.out.println(Mensajes.ERROR_FAVORITO_NO_HAY);
             return;
         }
         // Muestra los favoritos
-        mostrarFavoritos(favoritos);
-        String email = Validador.pedirConIntentos(sc, "Introduce el email del usuario: ", "email");
-        if (email == null)
-            return;
+        for (int intentos = 0; intentos < Validador.MAX_INTENTOS; intentos++) {
+            System.out.print("Introduce el email del usuario: ");
+            String email = sc.nextLine();
+            if (!Validador.validarEntrada(email, "email"))
+                continue;
 
-        String idEventoString = Validador.pedirConIntentos(sc, "Introduce el ID del evento: ", "id");
-        if (idEventoString == null)
-            return;
+            System.out.print("Introduce el ID del evento: ");
+            String idEventoString = sc.nextLine();
+            if (!Validador.validarEntrada(idEventoString, "id"))
+                continue;
 
-        int idEvento = Integer.parseInt(idEventoString);
+            int idEvento = Integer.parseInt(idEventoString);
 
-        // Busca el favorito en el ArrayList iterando. Si coincide con el email y el
-        // idEvento, lo guarda en la variable aEliminar
-        Favorito aEliminar = null;
-        for (Favorito fav : favoritos) {
-            if (fav.getEmailUsuario().equals(email) && fav.getIdEvento() == idEvento) {
-                aEliminar = fav;
-                break;
+            // Busca el favorito
+            Favorito aEliminar = null;
+            for (Favorito fav : favoritos) {
+                if (fav.getEmailUsuario().equals(email) && fav.getIdEvento() == idEvento) {
+                    aEliminar = fav;
+                    break;
+                }
+            }
+
+            if (aEliminar != null) {
+                favoritos.remove(aEliminar);
+                System.out.println("\n=====Favorito eliminado correctamente=====\n");
+                return;
+            } else {
+                System.out.println(Mensajes.ERROR_FAVORITO_NO_EXISTE);
             }
         }
-
-        // Si no se encuentra el favorito, muestra un mensaje de error
-        if (aEliminar == null) {
-            System.out.println(Mensajes.ERROR_FAVORITO_NO_EXISTE);
-            return;
-        }
-        // Elimina el favorito
-        favoritos.remove(aEliminar);
-        System.out.println("Favorito eliminado correctamente.");
+        System.out.println(Mensajes.ERROR_MAX_INTENTOS);
     }
 
     /**
@@ -126,7 +131,7 @@ public class FavoritoServicio {
             System.out.println(Mensajes.ERROR_FAVORITO_NO_HAY);
             return;
         }
-        System.out.println("\n=====Lista de favoritos=====");
+        System.out.println("\n=====Lista de favoritos=====\n");
         for (Favorito f : favoritos) {
             System.out.println(f);
         }

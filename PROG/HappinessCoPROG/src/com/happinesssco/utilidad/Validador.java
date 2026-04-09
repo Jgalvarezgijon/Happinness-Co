@@ -72,40 +72,50 @@ public class Validador {
      * @return Valor validado
      */
     public static String pedirConIntentos(Scanner sc, String mensaje, String tipo) {
-
         for (int intentos = 0; intentos < MAX_INTENTOS; intentos++) {
             System.out.print(mensaje);
             String entrada = sc.nextLine();
-
-            boolean valido = false;
-            switch (tipo) {
-                case "usuario":
-                    valido = validacionUsuario(entrada);
-                    break;
-                case "email":
-                    valido = validacionEmail(entrada);
-                    break;
-                case "password":
-                    valido = validacionPassword(entrada);
-                    break;
-                case "fecha":
-                    valido = validadorFecha(entrada);
-                    break;
-                case "id":
-                    valido = validadorId(entrada);
-                    break;
-                default:
-                    valido = validadorVacio(entrada);
-                    break;
-            }
-            // Si la entrada es válida, se devuelve
-            if (valido)
+            if (validarEntrada(entrada, tipo)) {
                 return entrada;
-            intentos++; // Si la entrada no es válida, se incrementa el contador de intentos
+            }
         }
-        // Si se alcanzan los intentos máximos, se devuelve null
         System.out.println("Error. Se ha alcanzado el número máximo de intentos.");
         return null;
+    }
+
+    /**
+     * Valida una entrada según el tipo especificado sin bucles de reintento.
+     * 
+     * @param entrada String a validar
+     * @param tipo    Tipo de validación a realizar
+     * @return true si es válido, false si no lo es
+     */
+    public static boolean validarEntrada(String entrada, String tipo) {
+        boolean valido = false;
+        switch (tipo) {
+            case "usuario":
+                valido = validacionUsuario(entrada);
+                break;
+            case "email":
+                valido = validacionEmail(entrada);
+                break;
+            case "password":
+                valido = validacionPassword(entrada);
+                break;
+            case "fecha":
+                valido = validadorFecha(entrada);
+                break;
+            case "id":
+                valido = validadorId(entrada);
+                break;
+            case "generico":
+                valido = validadorVacio(entrada);
+                break;
+            default:
+                System.out.println("Error. Tipo de validación no reconocido.");
+                break;
+        }
+        return valido;
     }
 
     /**

@@ -53,7 +53,7 @@ public class EventoServicio {
         Evento eventoNuevo = new Evento(contadorIdEventos, fecha, titulo, ubicacion, descripcion);
 
         eventos.put(eventoNuevo.getId(), eventoNuevo);
-        System.out.println("Evento creado correctamente.");
+        System.out.println("\n=====Evento creado correctamente=====\n");
     }
 
     /**
@@ -64,15 +64,26 @@ public class EventoServicio {
      * @param sc      Scanner para entrada de datos por teclado
      */
     public static void eliminarEvento(HashMap<Integer, Evento> eventos, Scanner sc) {
-        System.out.println("=====Eliminación de evento=====");
+        System.out.println("\n=====Eliminación de evento=====\n");
         mostrarEventos(eventos);
-        String idString = Validador.pedirConIntentos(sc, "Introduce el ID del evento a eliminar: ", "id");
-        if (!eventos.containsKey(Integer.parseInt(idString)) || idString == null) {
-            System.out.println(Mensajes.ERROR_EVENTO_NO_EXISTE);
-            return;
+        for (int intentos = 0; intentos < Validador.MAX_INTENTOS; intentos++) {
+            System.out.print("Introduce el ID del evento a eliminar: ");
+            String idString = sc.nextLine();
+
+            // 1. Validamos formato primero
+            if (Validador.validarEntrada(idString, "id")) {
+                int id = Integer.parseInt(idString);
+                // 2. Validamos existencia después
+                if (eventos.containsKey(id)) {
+                    eventos.remove(id);
+                    System.out.println("\n=====Evento eliminado correctamente=====\n");
+                    return;
+                } else {
+                    System.out.println(Mensajes.ERROR_EVENTO_NO_EXISTE);
+                }
+            }
         }
-        eventos.remove(Integer.parseInt(idString));
-        System.out.println("Evento eliminado correctamente.");
+        System.out.println(Mensajes.ERROR_MAX_INTENTOS);
     }
 
     /**
@@ -86,7 +97,7 @@ public class EventoServicio {
             System.out.println(Mensajes.ERROR_EVENTO_NO_HAY);
             return;
         }
-        System.out.println("\n=====Lista de eventos=====");
+        System.out.println("\n=====Lista de eventos=====\n");
         for (Evento e : eventos.values()) {
             System.out.println(e);
         }

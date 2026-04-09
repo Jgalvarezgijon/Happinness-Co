@@ -45,7 +45,7 @@ public class Galeria {
     // toString
     @Override
     public String toString() {
-        return "Galeria con ID " + id + "\nTítulo: " + titulo + "\nID del Evento: " + idEvento;
+        return "Galeria || ID: " + id + " || Título: " + titulo + " || ID Evento: " + idEvento;
     }
 
 }

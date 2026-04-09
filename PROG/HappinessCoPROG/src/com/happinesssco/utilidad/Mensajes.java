@@ -6,6 +6,7 @@ public class Mensajes {
     public static final String ERROR_MENU_OPCION = "Error. La opción introducida no es válida.";
     public static final String ERROR_LONGITUD = "Error. La longitud debe ser de al menos 8 caracteres.";
     public static final String ERROR_CAMPO_VACIO = "Error. Este campo no puede estar vacío.";
+    public static final String ERROR_MAX_INTENTOS = "Error. Número máximo de intentos alcanzado.";
 
     // USUARIO
     public static final String ERROR_USUARIO_CREACION = "Error. No se ha podido crear el usuario.";

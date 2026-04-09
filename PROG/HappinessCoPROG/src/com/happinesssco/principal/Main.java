@@ -10,6 +10,7 @@ import com.happinesssco.servicio.GaleriaServicio;
 import com.happinesssco.servicio.UsuarioServicio;
 import com.happinesssco.modelo.Evento;
 import com.happinesssco.modelo.Favorito;
+import com.happinesssco.modelo.Galeria;
 import com.happinesssco.modelo.Usuario;
 import com.happinesssco.utilidad.Mensajes;
 
@@ -22,6 +23,16 @@ public class Main {
         HashMap<String, Usuario> usuarios = new HashMap<>(); // Usuarios
         HashMap<Integer, Evento> eventos = new HashMap<>(); // Eventos
         ArrayList<Favorito> favoritos = new ArrayList<>(); // Favoritos
+
+        Usuario usuario1 = new Usuario("usuario111", "email@email.com", "contraseña1");
+        Evento evento1 = new Evento(1, "01/01/1990", "TituloEvento", "UbicacionEvento", "DescripcionEvento");
+        Favorito favorito1 = new Favorito(usuario1.getEmail(), evento1.getId());
+        Galeria galeria1 = new Galeria(1, "TituloGaleria", evento1.getId());
+
+        usuarios.put(usuario1.getEmail(), usuario1);
+        eventos.put(evento1.getId(), evento1);
+        favoritos.add(favorito1);
+        evento1.agregarGaleria(galeria1);
 
         int opcion = 0;
 
@@ -37,14 +48,14 @@ public class Main {
             System.out.println("8. Eliminar favorito.");
             System.out.println("9. Mostrar información.");
             System.out.println("10. Salir.");
-            System.out.print("Elige una opción: ");
+            System.out.print("\nElige una opción: ");
 
             String input = sc.nextLine();
             // Manejo de excepciones
             try {
                 opcion = Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                System.out.println(Mensajes.ERROR_MENU_INPUT);
+                System.out.println("\n" + Mensajes.ERROR_MENU_INPUT);
                 continue;
             }
 
@@ -86,10 +97,10 @@ public class Main {
                     mostrarMenuInfo(usuarios, eventos, favoritos, sc);
                     break;
                 case 10:
-                    System.out.println("Saliendo del programa...");
+                    System.out.println("\nSaliendo del programa...");
                     break;
                 default:
-                    System.out.println(Mensajes.ERROR_MENU_OPCION);
+                    System.out.println("\n" + Mensajes.ERROR_MENU_OPCION);
                     break;
             }
         } while (opcion != 10);
@@ -126,7 +137,7 @@ public class Main {
             try {
                 opcionSubMenu = Integer.parseInt(inputSubMenu);
             } catch (NumberFormatException e) {
-                System.out.println(Mensajes.ERROR_MENU_INPUT);
+                System.out.println("\n" + Mensajes.ERROR_MENU_INPUT);
                 continue;
             }
 
@@ -141,10 +152,10 @@ public class Main {
                     FavoritoServicio.mostrarFavoritos(favoritos);
                     break;
                 case 4:
-                    System.out.println("Saliendo del submenú...");
+                    System.out.println("\nSaliendo del submenú...");
                     break;
                 default:
-                    System.out.println(Mensajes.ERROR_MENU_OPCION);
+                    System.out.println("\n" + Mensajes.ERROR_MENU_OPCION);
                     break;
             }
         } while (opcionSubMenu != 4);

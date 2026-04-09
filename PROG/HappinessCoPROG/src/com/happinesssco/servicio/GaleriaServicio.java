@@ -21,7 +21,7 @@ public class GaleriaServicio {
      * @param sc      Scanner para entrada de datos por teclado
      */
     public static void agregarGaleria(HashMap<Integer, Evento> eventos, Scanner sc) {
-        System.out.println("=====Creación de galería=====");
+        System.out.println("\n=====Creación de galería=====\n");
         // Comprueba que eventos no esté vacío (No hay galerias si no hay eventos)
         if (eventos.isEmpty()) {
             System.out.println(Mensajes.ERROR_EVENTO_NO_HAY);
@@ -52,7 +52,7 @@ public class GaleriaServicio {
         Galeria nuevaGaleria = new Galeria(contadorIdGalerias, titulo, idEvento);
 
         eventos.get(idEvento).getColeccionGalerias().add(nuevaGaleria);
-        System.out.println("Galería creada correctamente.");
+        System.out.println("\n=====Galería creada correctamente=====\n");
     }
 
     /**
@@ -66,53 +66,51 @@ public class GaleriaServicio {
      */
     public static void eliminarGaleria(HashMap<Integer, Evento> eventos, Scanner sc) {
 
-        System.out.println("=====Eliminación de galería=====");
+        System.out.println("\n=====Eliminación de galería===== \n");
         // Comprueba que eventos no esté vacío (No hay galerias si no hay eventos)
         if (eventos.isEmpty()) {
             System.out.println(Mensajes.ERROR_EVENTO_NO_HAY);
             return;
         }
 
-        // Muestra los eventos y el usuario elige uno
-        EventoServicio.mostrarEventos(eventos);
-        String idEventoString = Validador.pedirConIntentos(sc, "Introduce el ID del evento: ", "id");
-        if (idEventoString == null)
-            return;
+        for (int intentos = 0; intentos < Validador.MAX_INTENTOS; intentos++) {
+            System.out.print("Introduce el ID del evento: ");
+            String idEventoString = sc.nextLine();
+            if (!Validador.validarEntrada(idEventoString, "id"))
+                continue;
 
-        int idEvento = Integer.parseInt(idEventoString);
-        if (!eventos.containsKey(idEvento)) {
-            System.out.println(Mensajes.ERROR_EVENTO_NO_EXISTE);
-            return;
-        }
+            int idEvento = Integer.parseInt(idEventoString);
+            if (!eventos.containsKey(idEvento)) {
+                System.out.println(Mensajes.ERROR_EVENTO_NO_EXISTE);
+                continue;
+            }
 
-        // Muestra las galerias del evento y el usuario elige una
-        Evento evento = eventos.get(idEvento);
-        mostrarGalerias(evento);
+            Evento evento = eventos.get(idEvento);
+            mostrarGalerias(evento);
 
-        String idGaleriaString = Validador.pedirConIntentos(sc, "Introduce el ID de la galería: ", "id");
-        if (idGaleriaString == null)
-            return;
+            System.out.print("Introduce el ID de la galería: ");
+            String idGaleriaString = sc.nextLine();
+            if (!Validador.validarEntrada(idGaleriaString, "id"))
+                continue;
 
-        int idGaleria = Integer.parseInt(idGaleriaString);
-        Galeria aEliminar = null;
+            int idGaleria = Integer.parseInt(idGaleriaString);
+            Galeria aEliminar = null;
+            for (Galeria g : evento.getColeccionGalerias()) {
+                if (g.getId() == idGaleria) {
+                    aEliminar = g;
+                    break;
+                }
+            }
 
-        // Busca la galería en el ArrayList iterando. Si coincide con el idGaleria, lo
-        // guarda en la variable aEliminar
-        for (Galeria g : evento.getColeccionGalerias()) {
-            if (g.getId() == idGaleria) {
-                aEliminar = g;
-                break;
+            if (aEliminar != null) {
+                evento.getColeccionGalerias().remove(aEliminar);
+                System.out.println("\n=====Galería eliminada correctamente=====\n");
+                return;
+            } else {
+                System.out.println(Mensajes.ERROR_GALERIA_NO_EXISTE);
             }
         }
-
-        // Si no se encuentra la galería, muestra un mensaje de error
-        if (aEliminar == null) {
-            System.out.println(Mensajes.ERROR_GALERIA_NO_EXISTE);
-            return;
-        }
-        // Elimina la galería
-        evento.getColeccionGalerias().remove(aEliminar);
-        System.out.println("Galería eliminada correctamente.");
+        System.out.println(Mensajes.ERROR_MAX_INTENTOS);
     }
 
     /**
@@ -125,7 +123,7 @@ public class GaleriaServicio {
             System.out.println(Mensajes.ERROR_GALERIA_NO_HAY);
             return;
         }
-        System.out.println("\n=====Lista de galerías=====");
+        System.out.println("\n=====Lista de galerías=====\n");
         for (Galeria g : evento.getColeccionGalerias()) {
             System.out.println(g);
         }
