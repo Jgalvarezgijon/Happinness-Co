@@ -1,7 +1,5 @@
 package com.happinesssco.modelo;
 
-import com.happinesssco.servicio.EventoServicio;
-
 public class Favorito {
 
     private String emailUsuario;
