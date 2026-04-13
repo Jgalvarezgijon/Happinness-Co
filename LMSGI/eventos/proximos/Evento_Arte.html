@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Evento Arte contra la Guerra - Happiness & Co">
     <title>Exposición de Arte Contemporáneo - Happiness & Co</title>
     <!--Base URL for subfolders-->
     <base href="../../">
@@ -11,6 +13,7 @@
     <link rel="stylesheet" href="config/fonts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body class="bg-gradient-to-r from-corporativo/20 to-cine/20 flex flex-col min-h-screen">
     <!--Header-->
     <div id="header"></div>
@@ -20,7 +23,8 @@
 
     <main class="max-w-6xl mx-auto py-12 px-6 grid grid-cols-1 lg:grid-cols-3 gap-10 flex-grow">
         <div class="lg:col-span-2 bg-white p-8 rounded-xl shadow-sm h-fit">
-            <img src="resources/photos/events/artExhibition.avif" alt="Exposición" class="w-full h-96 object-cover rounded-lg mb-8 border-b-4 border-exposiciones">
+            <img src="resources/photos/events/artExhibition.avif" alt="Exposición"
+                class="w-full h-96 object-cover rounded-lg mb-8 border-b-4 border-exposiciones">
             <h1 class="text-4xl font-bold mb-4">Arte contra la Guerra</h1>
             <div class="flex flex-wrap gap-4 text-sm mb-6 font-semibold">
                 <span><i class="fas fa-calendar-alt text-exposiciones"></i> 12 de Mayo - 29 de Junio, 2026</span>
@@ -28,8 +32,10 @@
                 <span class="bg-exposiciones text-white px-2 py-0.5 rounded text-xs">Exposiciones</span>
             </div>
             <div class="prose max-w-none leading-relaxed space-y-4">
-                <p>La segunda guerra mundial vista desde el pincel de los artistas contemporáneos. Una crítica a la deshumanización del hombre a través del arte.</p>
-                <p>Una exposición cruda, necesaria y profundamente conmovedora que no dejará indiferente a ningún visitante.</p>
+                <p>La segunda guerra mundial vista desde el pincel de los artistas contemporáneos. Una crítica a la
+                    deshumanización del hombre a través del arte.</p>
+                <p>Una exposición cruda, necesaria y profundamente conmovedora que no dejará indiferente a ningún
+                    visitante.</p>
             </div>
         </div>
         <!--Import Recomendados-->
@@ -47,4 +53,5 @@
         fetch("components/footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);
     </script>
 </body>
+
 </html>

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Próximos Eventos - Happiness & Co">
     <title>Happiness & Co - Eventos</title>
     <!--Rutas base para páginas secundarias-->
     <base href="../">
@@ -18,7 +20,7 @@
     <div id="header"></div>
     <script>
         fetch("components/header.html")
-            .then(response => response  .text())
+            .then(response => response.text())
             .then(data => {
                 document.getElementById("header").innerHTML = data;
             });
@@ -27,64 +29,81 @@
     <!--=====Contenido principal de la página=====-->
     <!--Similar a Home, pero sin el evento principal en grande-->
     <main class="max-w-6xl mx-auto py-12 px-6 grid grid-cols-1 md:grid-cols-3 gap-12 w-full flex-grow">
-        
+
         <!--Columna izquierda-->
         <section class="md:col-span-2">
             <h1 class="text-4xl font-bold mb-6 border-b-2 border-corporativo/30 pb-2">Próximos Eventos</h1>
-            
+
             <!--Columna con eventos-->
             <div class="flex flex-col gap-8">
                 <!--Exposición -->
-                <article class="bg-white rounded-lg shadow-sm flex overflow-hidden transition-all hover:shadow-md hover:bg-exposiciones/5 cursor-pointer">
-                    <img src="resources/photos/events/artExhibition.avif"
-                         alt="Arte contra la Guerra" class="w-48 object-cover">
+                <article
+                    class="bg-white rounded-lg shadow-sm flex overflow-hidden transition-all hover:shadow-md hover:bg-exposiciones/5 cursor-pointer">
+                    <img src="resources/photos/events/artExhibition.avif" alt="Arte contra la Guerra"
+                        class="w-48 object-cover">
                     <div class="p-6">
-                        <span class="bg-exposiciones text-white text-xs font-bold px-2 py-1 rounded uppercase">Exposiciones</span>
+                        <span
+                            class="bg-exposiciones text-white text-xs font-bold px-2 py-1 rounded uppercase">Exposiciones</span>
                         <h3 class="text-xl font-bold mt-2 mb-1">Arte contra la Guerra</h3>
-                        <p class="text-gray-500 text-sm mb-2 ">Museo Nicanor Piñole | 12 de Mayo - 29 de Junio de 2026</p>
-                        <p class="text-gray-600 text-justify text-sm mb-3">La segunda guerra mundial vista desde el pincel de los artistas contemporáneos. 
+                        <p class="text-gray-500 text-sm mb-2 ">Museo Nicanor Piñole | 12 de Mayo - 29 de Junio de 2026
+                        </p>
+                        <p class="text-gray-600 text-justify text-sm mb-3">La segunda guerra mundial vista desde el
+                            pincel de los artistas contemporáneos.
                             Una crítica a la deshumanización del hombre a través del arte.
                         </p>
-                        <a href="eventos/proximos/Evento_Arte.html" class="text-exposiciones font-bold text-sm hover:underline">Ver evento <span class="font-archistry text-lg">&#38;</span></a>
+                        <a href="eventos/proximos/Evento_Arte.html"
+                            class="text-exposiciones font-bold text-sm hover:underline">Ver evento <span
+                                class="font-archistry text-lg">&#38;</span></a>
                     </div>
                 </article>
 
                 <!--Teatro-->
-                <article class="bg-white rounded-lg shadow-sm flex overflow-hidden transition-all hover:shadow-md hover:bg-teatro/5 cursor-pointer">
+                <article
+                    class="bg-white rounded-lg shadow-sm flex overflow-hidden transition-all hover:shadow-md hover:bg-teatro/5 cursor-pointer">
                     <img src="resources/photos/events/obraTeatro.avif"
-                         alt="Luces de Bohemia Grupo de Teatro Cangas de Onís" class="w-48 object-cover">
+                        alt="Luces de Bohemia Grupo de Teatro Cangas de Onís" class="w-48 object-cover">
                     <div class="p-6">
                         <span class="bg-teatro text-white text-xs font-bold px-2 py-1 rounded uppercase">Teatro</span>
                         <h3 class="text-xl font-bold mt-2 mb-1">Luces de Bohemia</h3>
                         <p class="text-gray-500 text-sm mb-2">Teatro Jovellanos | 19 de Mayo de 2026</p>
-                        <p class="text-gray-600 text-justify text-sm mb-3">El grupo de teatro de Cangas de Onís representa la obra de Valle Inclán que dio vida al esperpento.</p>
-                        <a href="eventos/proximos/Evento_Teatro.html" class="text-teatro font-bold text-sm hover:underline">Ver evento <span class="font-archistry text-lg">&#38;</span></a>
+                        <p class="text-gray-600 text-justify text-sm mb-3">El grupo de teatro de Cangas de Onís
+                            representa la obra de Valle Inclán que dio vida al esperpento.</p>
+                        <a href="eventos/proximos/Evento_Teatro.html"
+                            class="text-teatro font-bold text-sm hover:underline">Ver evento <span
+                                class="font-archistry text-lg">&#38;</span></a>
                     </div>
                 </article>
 
                 <!--Música-->
-                <article class="bg-white rounded-lg shadow-sm flex overflow-hidden transition-all hover:shadow-md hover:bg-musica/5 cursor-pointer">
-                    <img src="resources/photos/events/orchestra.avif"
-                         alt="Requiem de Verdi OSPA" class="w-48 object-cover">
+                <article
+                    class="bg-white rounded-lg shadow-sm flex overflow-hidden transition-all hover:shadow-md hover:bg-musica/5 cursor-pointer">
+                    <img src="resources/photos/events/orchestra.avif" alt="Requiem de Verdi OSPA"
+                        class="w-48 object-cover">
                     <div class="p-6">
                         <span class="bg-musica text-white text-xs font-bold px-2 py-1 rounded uppercase">Música</span>
                         <h3 class="text-xl font-bold mt-2 mb-1">Requiem de Verdi</h3>
                         <p class="text-gray-500 text-sm mb-2">Teatro Jovellanos | 30 de Mayo de 2026</p>
-                        <p class="text-gray-600 text-sm mb-3">La OSPA presenta el Requiem de Verdi, una oportunidad única para disfrutar de la majestuosidad coral.</p>
-                        <a href="eventos/proximos/Evento_Requiem.html" class="text-musica font-bold text-sm hover:underline">Ver evento <span class="font-archistry text-lg">&#38;</span></a>
+                        <p class="text-gray-600 text-sm mb-3">La OSPA presenta el Requiem de Verdi, una oportunidad
+                            única para disfrutar de la majestuosidad coral.</p>
+                        <a href="eventos/proximos/Evento_Requiem.html"
+                            class="text-musica font-bold text-sm hover:underline">Ver evento <span
+                                class="font-archistry text-lg">&#38;</span></a>
                     </div>
                 </article>
 
                 <!-- Madreñes (August) -->
-                <article class="bg-white rounded-lg shadow-sm flex overflow-hidden transition-all hover:shadow-md hover:bg-musica/5 cursor-pointer">
-                    <img src="resources/photos/events/mainEvent.avif"
-                         alt="Madreñes Fest" class="w-48 object-cover">
+                <article
+                    class="bg-white rounded-lg shadow-sm flex overflow-hidden transition-all hover:shadow-md hover:bg-musica/5 cursor-pointer">
+                    <img src="resources/photos/events/mainEvent.avif" alt="Madreñes Fest" class="w-48 object-cover">
                     <div class="p-6">
                         <span class="bg-musica text-white text-xs font-bold px-2 py-1 rounded uppercase">Música</span>
                         <h3 class="text-xl font-bold mt-2 mb-1">Madreñes Fest 2026</h3>
                         <p class="text-gray-500 text-sm mb-2 ">Universidad Laboral | 1-5 de Agosto de 2026</p>
-                        <p class="text-gray-600 text-justify text-sm mb-3">El mayor festival de música celta llega a Gijón. Tradición y modernidad se dan la mano.</p>
-                        <a href="eventos/proximos/Evento_Madrenes.html" class="text-musica font-bold text-sm hover:underline">Ver evento <span class="font-archistry text-lg">&#38;</span></a>
+                        <p class="text-gray-600 text-justify text-sm mb-3">El mayor festival de música celta llega a
+                            Gijón. Tradición y modernidad se dan la mano.</p>
+                        <a href="eventos/proximos/Evento_Madrenes.html"
+                            class="text-musica font-bold text-sm hover:underline">Ver evento <span
+                                class="font-archistry text-lg">&#38;</span></a>
                     </div>
                 </article>
             </div>
@@ -115,4 +134,5 @@
             });
     </script>
 </body>
+
 </html>

@@ -1,7 +1,9 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Evento Madreñes Fest 2026 - Happiness & Co">
     <title>Madreñes Fest 2026 - Happiness & Co</title>
     <!--Base URL for subfolders-->
     <base href="../../">
@@ -11,6 +13,7 @@
     <link rel="stylesheet" href="config/fonts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body class="bg-gradient-to-r from-corporativo/20 to-cine/20 flex flex-col min-h-screen">
 
     <!--Header-->
@@ -23,7 +26,8 @@
 
     <main class="max-w-6xl mx-auto py-12 px-6 grid grid-cols-1 lg:grid-cols-3 gap-10 flex-grow">
         <div class="lg:col-span-2 bg-white p-8 rounded-xl shadow-sm h-fit">
-            <img src="resources/photos/events/mainEvent.avif" alt="Madreñes Fest" class="w-full h-96 object-cover rounded-lg mb-8 border-b-4 border-musica">
+            <img src="resources/photos/events/mainEvent.avif" alt="Madreñes Fest"
+                class="w-full h-96 object-cover rounded-lg mb-8 border-b-4 border-musica">
             <h1 class="text-4xl font-bold mb-4 text-musica">Madreñes Fest 2026</h1>
             <div class="flex flex-wrap gap-4 text-sm mb-6 font-semibold">
                 <span><i class="fas fa-calendar-alt text-musica"></i> 1 - 5 de Agosto, 2026</span>
@@ -31,14 +35,16 @@
                 <span class="bg-musica text-white px-2 py-0.5 rounded text-xs">Música</span>
             </div>
             <div class="prose max-w-none leading-relaxed space-y-4">
-                <p>El mayor festival de música celta llega a Gijón. Cinco días intensos donde la tradición y la modernidad se dan la mano bajo el cielo Gijonés.</p>
-                <p>Disfruta de conciertos, talleres de artesanía, gastronomía local y el mejor ambiente cultural de todo el verano.</p>
+                <p>El mayor festival de música celta llega a Gijón. Cinco días intensos donde la tradición y la
+                    modernidad se dan la mano bajo el cielo Gijonés.</p>
+                <p>Disfruta de conciertos, talleres de artesanía, gastronomía local y el mejor ambiente cultural de todo
+                    el verano.</p>
             </div>
         </div>
-        
+
         <!--Import pestaña de recomendados-->
         <aside class="space-y-8" id="recomendados-container">
-        </aside>    
+        </aside>
         <script>
             fetch("components/recomendados.html")
                 .then(res => res.text())
@@ -51,4 +57,5 @@
         fetch("components/footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);
     </script>
 </body>
+
 </html>
