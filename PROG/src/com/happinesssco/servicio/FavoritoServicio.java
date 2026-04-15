@@ -119,8 +119,12 @@ public class FavoritoServicio {
         }
         // Si se encuentra el favorito, se elimina
         if (aEliminar != null) {
-            favoritos.remove(aEliminar);
-            System.out.println("\n=====Favorito eliminado correctamente=====\n");
+            System.out.print("¿Estás seguro de que quieres eliminar el favorito? (S/N): ");
+            String respuesta = sc.nextLine();
+            if (respuesta.equalsIgnoreCase("S")) {
+                favoritos.remove(aEliminar);
+                System.out.println("\n=====Favorito eliminado correctamente=====\n");
+            }
         } else {
             System.out.println(Mensajes.ERROR_FAVORITO_NO_EXISTE);
         }

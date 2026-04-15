@@ -73,12 +73,17 @@ public class UsuarioServicio {
         mostrarUsuarios(usuarios);
         String email = Validador.pedirConIntentos(sc, "\nIntroduce el email del usuario a eliminar: ", "email");
         if (email != null) {
-            if (usuarios.remove(email) != null) {
-                System.out.println("\n=====Usuario eliminado correctamente=====\n");
-            } else {
-                System.out.println(Mensajes.ERROR_USUARIO_NO_EXISTE);
+            System.out.print("¿Estás seguro de que quieres eliminar el usuario? (S/N): ");
+            String respuesta = sc.nextLine();
+            if (respuesta.equalsIgnoreCase("S")) {
+                if (usuarios.remove(email) != null) {
+                    System.out.println("\n=====Usuario eliminado correctamente=====\n");
+                } else {
+                    System.out.println(Mensajes.ERROR_USUARIO_NO_EXISTE);
+                }
             }
         }
+
     }
 
     /**

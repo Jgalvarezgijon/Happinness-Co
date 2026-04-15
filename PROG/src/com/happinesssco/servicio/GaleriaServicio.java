@@ -101,8 +101,12 @@ public class GaleriaServicio {
         }
         // Si se encuentra la galería, se elimina
         if (aEliminar != null) {
-            evento.getColeccionGalerias().remove(aEliminar);
-            System.out.println("\n=====Galería eliminada correctamente=====\n");
+            System.out.print("¿Estás seguro de que quieres eliminar la galería? (S/N): ");
+            String respuesta = sc.nextLine();
+            if (respuesta.equalsIgnoreCase("S")) {
+                evento.getColeccionGalerias().remove(aEliminar);
+                System.out.println("\n=====Galería eliminada correctamente=====\n");
+            }
         } else {
             System.out.println(Mensajes.ERROR_GALERIA_NO_EXISTE);
         }
