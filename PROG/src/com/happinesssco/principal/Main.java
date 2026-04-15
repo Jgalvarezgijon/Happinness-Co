@@ -10,6 +10,7 @@ import com.happinesssco.servicio.GaleriaServicio;
 import com.happinesssco.servicio.UsuarioServicio;
 import com.happinesssco.modelo.Evento;
 import com.happinesssco.modelo.Favorito;
+import com.happinesssco.modelo.Galeria;
 import com.happinesssco.modelo.Usuario;
 import com.happinesssco.utilidad.Mensajes;
 
@@ -155,6 +156,13 @@ public class Main {
         } while (opcionSubMenu != 4);
     }
 
+    /**
+     * Crea elementos de prueba para el programa.
+     * 
+     * @param usuarios  HashMap de usuarios.
+     * @param eventos   HashMap de eventos.
+     * @param favoritos ArrayList de favoritos.
+     */
     public static void elementosDePrueba(HashMap<String, Usuario> usuarios,
             HashMap<Integer, Evento> eventos,
             ArrayList<Favorito> favoritos) {
@@ -171,8 +179,14 @@ public class Main {
         // Favorito de prueba
         Favorito favoritoPrueba = new Favorito(usuarioPrueba.getEmail(), eventoPrueba.getId());
         favoritos.add(favoritoPrueba);
+
+        // Galeria de prueba
+        Galeria galeriaPrueba = new Galeria(1, "GaleriaPruebaTitulo", eventoPrueba.getId());
+        eventoPrueba.agregarGaleria(galeriaPrueba);
+
         System.out.println("### Creado Usuario de prueba ###");
         System.out.println("### Creado Evento de prueba ###");
-        System.out.println("### Creado Favorito de prueba ###\n");
+        System.out.println("### Creado Favorito de prueba ###");
+        System.out.println("### Creado Galeria de prueba ###\n");
     }
 }
