@@ -36,7 +36,8 @@ public class Main {
             System.out.println("7. Añadir favorito.");
             System.out.println("8. Eliminar favorito.");
             System.out.println("9. Mostrar información.");
-            System.out.println("10. Salir.");
+            System.out.println("10. Elementos de prueba.");
+            System.out.println("11. Salir.");
             System.out.print("\nElige una opción: ");
 
             String input = sc.nextLine();
@@ -86,13 +87,17 @@ public class Main {
                     mostrarMenuInfo(usuarios, eventos, favoritos, sc);
                     break;
                 case 10:
+                    // Elementos de prueba
+                    elementosDePrueba(usuarios, eventos, favoritos);
+                    break;
+                case 11:
                     System.out.println("\nSaliendo del programa...");
                     break;
                 default:
                     System.out.println("\n" + Mensajes.ERROR_MENU_OPCION);
                     break;
             }
-        } while (opcion != 10);
+        } while (opcion != 11);
 
         sc.close();
     }
@@ -148,5 +153,26 @@ public class Main {
                     break;
             }
         } while (opcionSubMenu != 4);
+    }
+
+    public static void elementosDePrueba(HashMap<String, Usuario> usuarios,
+            HashMap<Integer, Evento> eventos,
+            ArrayList<Favorito> favoritos) {
+        System.out.println("\n=====Creación de elementos de prueba=====\n");
+        // Usuario de prueba
+        Usuario usuarioPrueba = new Usuario("UsuarioPrueba1", "emailprueba@mail.com", "passprueba123");
+        usuarios.put(usuarioPrueba.getEmail(), usuarioPrueba);
+
+        // Evento de prueba
+        Evento eventoPrueba = new Evento(1, "01/01/1990", "EventoPruebaTitulo", "EventoPruebaUbicacion",
+                "EventoPruebaDescripcion");
+        eventos.put(eventoPrueba.getId(), eventoPrueba);
+
+        // Favorito de prueba
+        Favorito favoritoPrueba = new Favorito(usuarioPrueba.getEmail(), eventoPrueba.getId());
+        favoritos.add(favoritoPrueba);
+        System.out.println("### Creado Usuario de prueba ###");
+        System.out.println("### Creado Evento de prueba ###");
+        System.out.println("### Creado Favorito de prueba ###\n");
     }
 }
